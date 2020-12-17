@@ -1,13 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="./pages/index.css">
+    <title>Место</title>
 </head>
 
-<body>
+<body class="root">
+    <div class="page">
+        <header class="header">
+            <a class="header__link" href="#" target="_blank">
+                <div class="header__logo"></div>
+            </a>
+        </header>
+        <main class="content">
+            <section class="profile">
+                <div class="profile__avatar">
+                    <img class="profile__image" alt="Кусто" src="./images/custo.jpg">
+                </div>
+                <h1 class="profile__title">Жак-Ив Кусто</h1>
+                <h2 class="profile__subtitle">Исследователь океана</h2>
+                <div class="profile__edit-button"></div>
+                <div class="profile__add-button"></div>
+            </section>
+            <form class="form">
+                <button type="reset" class="form__button form__button-reset"></button>
+                <h2 class="form__title">Редактировать профиль</h2>
+                <input type="text" class="form__input form__input-name">
+                <input type="text" class="form__input form__input-discription">
+                <button type="submit" class="form__button form__button-submit">Сохранить</button>
+            </form>
+            <section class="elements">
+                <div class="element">
+                    <img class="element__image" alt="Карачаевск" src="./images/karachaevsk.jpg">
+                    <div class="element__title-area">
+                        <h2 class="element__title">Карачаевск</h2>
+                        <div class="element__like-button"></div>
+                    </div>
+                </div>
+                <div class="element">
+                    <img class="element__image" alt="Гора Эльбрус" src="./images/gora-elbrus-1.jpg">
+                    <div class="element__title-area">
+                        <h2 class="element__title">Гора Эльбрус</h2>
+                        <div class="element__like-button"></div>
+                    </div>
+                </div>
+                <div class="element">
+                    <img class="element__image" alt="Домбай" src="./images/dombay.jpg">
+                    <div class="element__title-area">
+                        <h2 class="element__title">Домбай</h2>
+                        <div class="element__like-button"></div>
+                    </div>
+                </div>
+                <div class="element">
+                    <img class="element__image" alt="Гора Эльбрус" src="./images/gora-elbrus-2.jpg">
+                    <div class="element__title-area">
+                        <h2 class="element__title">Гора Эльбрус</h2>
+                        <div class="element__like-button"></div>
+                    </div>
+                </div>
+                <div class="element">
+                    <img class="element__image" alt="Домбай" src="./images/dombay-2.jpg">
+                    <div class="element__title-area">
+                        <h2 class="element__title">Домбай</h2>
+                        <div class="element__like-button"></div>
+                    </div>
+                </div>
+                <div class="element">
+                    <img class="element__image" alt="Карачаево-Черкеск" src="./images/karachaevsk.jpg">
+                    <div class="element__title-area">
+                        <h2 class="element__title">Карачаево-Черкеск</h2>
+                        <div class="element__like-button"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer class="footer">
+            <p class="footer__text">&commat; 2020г. Дмитрий Спицын.</p>
+        </footer>
+    </div>
 
 </body>
 

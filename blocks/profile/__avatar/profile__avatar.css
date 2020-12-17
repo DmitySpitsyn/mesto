@@ -1,0 +1,18 @@
+    .profile__avatar {
+        display: flex;
+        margin-left: -23px;
+        width: 168px;
+        border: 1px solid green;
+        grid-row-start: 1;
+        grid-row-end: 3;
+    }
+    
+    @media screen and (max-width:680px) {
+        .profile__avatar {
+            grid-column-start: 1;
+            grid-column-end: 3;
+            grid-row-start: 1;
+            justify-self: center;
+            margin: 0;
+        }
+    }
