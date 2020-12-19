@@ -25,13 +25,15 @@
                 <div class="profile__edit-button"></div>
                 <div class="profile__add-button"></div>
             </section>
-            <form class="form">
-                <button type="reset" class="form__button form__button-reset"></button>
-                <h2 class="form__title">Редактировать профиль</h2>
-                <input type="text" class="form__input form__input-name">
-                <input type="text" class="form__input form__input-discription">
-                <button type="submit" class="form__button form__button-submit">Сохранить</button>
-            </form>
+            <section class="overlay">
+                <form class="form">
+                    <span type="reset" class="form__button-reset"></span>
+                    <h2 class="form__title">Редактировать профиль</h2>
+                    <input type="text" class="form__input form__input-name">
+                    <input type="text" class="form__input form__input-description">
+                    <input type="submit" class="form__button-submit" value="Сохранить">
+                </form>
+            </section>
             <section class="elements">
                 <div class="element">
                     <img class="element__image" alt="Карачаевск" src="./images/karachaevsk.jpg">
@@ -81,7 +83,7 @@
             <p class="footer__text">&commat; 2020г. Дмитрий Спицын.</p>
         </footer>
     </div>
-
+    <script src="scripts/script.js"></script>
 </body>
 
 </html>

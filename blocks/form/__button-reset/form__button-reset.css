@@ -4,13 +4,8 @@
     margin: -48px 0 0px 438px;
     position: fixed;
     background-image: url(../../../images/Close-Icon.svg);
-    background-repeat: no-repeat;
-    background-position: center;
     background-size: cover;
-    background-color: transparent;
-    border: none;
     cursor: pointer;
-    outline: none;
 }
 
 .form__button-reset:hover {
