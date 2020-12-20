@@ -1,6 +1,6 @@
 .elements {
     margin: 0;
-    padding: 47px 0 0 0;
+    padding: 50px 0 0 0;
     width: 100%;
     max-width: 880px;
     list-style-type: none;
@@ -8,5 +8,12 @@
     grid-template-columns: repeat(auto-fit, minmax(auto, 283px));
     align-items: center;
     justify-content: center;
-    gap: 15px;
+    row-gap: 20px;
+    column-gap: 15px;
+}
+
+@media screen and (max-width:400px) {
+    .elements {
+        padding: 35px 0 0 0;
+    }
 }

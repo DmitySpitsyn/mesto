@@ -1,5 +1,5 @@
 .profile__edit-button {
-    margin: 0 0 -10px 25px;
+    margin: 0 0 -23px 21px;
     width: 24px;
     height: 24px;
     background-image: url(../../../images/edit-button-pen.png);
@@ -15,11 +15,11 @@
 
 @media screen and (max-width:680px) {
     .profile__edit-button {
+        margin: 32px 20px 0px 0px;
         grid-row-start: 3;
         grid-column-start: 2;
         justify-self: start;
-        margin: 0 25px 0px 0px;
-        width: 7.5px;
-        height: 7.5px;
+        width: 18px;
+        height: 18px;
     }
 }

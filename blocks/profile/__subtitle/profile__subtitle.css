@@ -3,6 +3,10 @@
     margin: 0;
     font-size: 18px;
     line-height: 22px;
+    max-width: 336px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
     color: #FFFFFF;
     grid-column-start: 2;
     grid-row-start: 2;
@@ -12,6 +16,8 @@
 
 @media screen and (max-width:680px) {
     .profile__subtitle {
+        max-width: 262px;
+        margin: 8px 0 0 0;
         font-size: 14px;
         line-height: 17px;
         grid-row-start: 4;

@@ -2,7 +2,6 @@
         display: flex;
         margin-left: -23px;
         width: 168px;
-        border: 1px solid green;
         grid-row-start: 1;
         grid-row-end: 3;
     }
