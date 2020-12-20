@@ -6,6 +6,8 @@
     right: -40px;
     background-image: url(../../../images/Close-Icon.svg);
     background-size: cover;
+    background-color: transparent;
+    border: none;
     cursor: pointer;
 }
 
