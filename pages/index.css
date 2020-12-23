@@ -14,10 +14,11 @@
 @import url(../blocks/profile/__add-button/profile__add-button.css);
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
+@import url(../blocks/container/container.css);
+@import url(../blocks/container/__button-close/container__button-close.css);
+@import url(../blocks/container/__title/container__title.css);
 @import url(../blocks/form/form.css);
-@import url(../blocks/form/__title/form__title.css);
 @import url(../blocks/form/__input/form__input.css);
-@import url(../blocks/form/__button-reset/form__button-reset.css);
 @import url(../blocks/form/__button-submit/form__button-submit.css);
 @import url(../blocks/elements/elements.css);
 @import url(../blocks/element/element.css);

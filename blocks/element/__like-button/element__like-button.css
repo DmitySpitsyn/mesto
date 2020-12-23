@@ -8,10 +8,16 @@
     border: none;
     background-color: transparent;
     cursor: pointer;
+    outline: 0;
 }
 
 .element__like-button:hover {
     opacity: 0.5;
+}
+
+.element__like-button:active {
+    background-image: url(../../../images/element-like-button-active.svg);
+    outline: 0;
 }
 
 @media screen and (max-width:400px) {

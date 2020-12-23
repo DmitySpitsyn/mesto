@@ -1,22 +1,23 @@
-.form__button-reset {
-    width: 40px;
-    height: 40px;
+.container__button-close {
+    width: 35px;
+    height: 35px;
     position: absolute;
-    top: -40px;
+    top: -30px;
     right: -40px;
     background-image: url(../../../images/Close-Icon.svg);
     background-size: cover;
     background-color: transparent;
     border: none;
     cursor: pointer;
+    outline: 0;
 }
 
-.form__button-reset:hover {
+.container__button-close:hover {
     opacity: 0.6;
 }
 
 @media screen and (max-width:400px) {
-    .form__button-reset {
+    .container__button-close {
         top: -45px;
         right: 5px;
         width: 26px;

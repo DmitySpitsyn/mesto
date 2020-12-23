@@ -1,12 +1,12 @@
 let content = document.querySelector('.content');
 let editbutton = content.querySelector('.profile__edit-button');
 let popup = content.querySelector('.popup');
-let CloseButton = popup.querySelector('.form__button-reset');
+let CloseButton = popup.querySelector('.container__button-close');
 let submit = popup.querySelector('.form');
 let profiletitle = content.querySelector('.profile__title');
 let profilesubtitle = content.querySelector('.profile__subtitle');
-let formName = popup.querySelector('.form__input-name');
-let formdescription = popup.querySelector('.form__input-description');
+let formName = popup.querySelector('.form__input_type_name');
+let formdescription = popup.querySelector('.form__input_type_description');
 
 
 
