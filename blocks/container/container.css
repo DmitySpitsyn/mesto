@@ -8,3 +8,9 @@
     position: relative;
     flex-direction: column;
 }
+
+@media screen and (max-width:600px) {
+    .container {
+        max-width: 282px;
+    }
+}
