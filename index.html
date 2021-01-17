@@ -11,9 +11,9 @@
 <body class="root">
     <div class="page">
         <header class="header">
-            <a class="header__link" href="#" target="_blank">
-                <div class="header__logo"></div>
-            </a>
+            <div class="header__logo">
+                <a class="header__link" href="#" target="_blank"></a>
+            </div>
         </header>
         <main class="content">
             <section class="profile">
@@ -22,61 +22,65 @@
                 </div>
                 <h1 class="profile__title">Жак-Ив Кусто</h1>
                 <h2 class="profile__subtitle">Исследователь океана</h2>
-                <div class="profile__edit-button"></div>
-                <div class="profile__add-button"></div>
+                <button type="button" class="profile__edit-button"></button>
+                <button type="button" class="profile__add-button"></button>
             </section>
             <section class="popup">
-                <form class="form">
-                    <span type="reset" class="form__button-reset"></span>
-                    <h2 class="form__title">Редактировать профиль</h2>
-                    <input type="text" class="form__input form__input-name">
-                    <input type="text" class="form__input form__input-description">
-                    <input type="submit" class="form__button-submit" value="Сохранить">
-                </form>
+                <div class="container">
+                    <button type="button" class="container__button-close"></button>
+                    <h2 class="container__title">Редактировать профиль</h2>
+                    <form class="form" name="form-profile">
+                        <input type="text" name="profile-name" class="form__input form__input_type_name">
+                        <input type="text" name="profile-description" class="form__input form__input_type_description">
+                        <button type="submit" class="form__button-submit">Сохранить</button>
+                    </form>
+                </div>
             </section>
-            <section class="elements">
-                <div class="element">
-                    <img class="element__image" alt="Карачаевск" src="./images/karachaevsk.jpg">
-                    <div class="element__title-area">
-                        <h2 class="element__title">Карачаевск</h2>
-                        <div class="element__like-button"></div>
-                    </div>
-                </div>
-                <div class="element">
-                    <img class="element__image" alt="Гора Эльбрус" src="./images/gora-elbrus-1.jpg">
-                    <div class="element__title-area">
-                        <h2 class="element__title">Гора Эльбрус</h2>
-                        <div class="element__like-button"></div>
-                    </div>
-                </div>
-                <div class="element">
-                    <img class="element__image" alt="Домбай" src="./images/dombay.jpg">
-                    <div class="element__title-area">
-                        <h2 class="element__title">Домбай</h2>
-                        <div class="element__like-button"></div>
-                    </div>
-                </div>
-                <div class="element">
-                    <img class="element__image" alt="Гора Эльбрус" src="./images/gora-elbrus-2.jpg">
-                    <div class="element__title-area">
-                        <h2 class="element__title">Гора Эльбрус</h2>
-                        <div class="element__like-button"></div>
-                    </div>
-                </div>
-                <div class="element">
-                    <img class="element__image" alt="Домбай" src="./images/dombay-2.jpg">
-                    <div class="element__title-area">
-                        <h2 class="element__title">Домбай</h2>
-                        <div class="element__like-button"></div>
-                    </div>
-                </div>
-                <div class="element">
-                    <img class="element__image" alt="Карачаево-Черкесия" src="./images/karachaevsk.jpg">
-                    <div class="element__title-area">
-                        <h2 class="element__title">Карачаево-Черкеск</h2>
-                        <div class="element__like-button"></div>
-                    </div>
-                </div>
+            <section class="section-elements">
+                <ul class="elements">
+                    <li class="element">
+                        <img class="element__image" alt="Карачаевск" src="./images/karachaevsk.jpg">
+                        <div class="element__title-area">
+                            <h2 class="element__title">Карачаевск</h2>
+                            <button type="button" class="element__like-button"></button>
+                        </div>
+                    </li>
+                    <li class="element">
+                        <img class="element__image" alt="Гора Эльбрус" src="./images/gora-elbrus-1.jpg">
+                        <div class="element__title-area">
+                            <h2 class="element__title">Гора Эльбрус</h2>
+                            <button type="button" class="element__like-button"></button>
+                        </div>
+                    </li>
+                    <li class="element">
+                        <img class="element__image" alt="Домбай" src="./images/dombay.jpg">
+                        <div class="element__title-area">
+                            <h2 class="element__title">Домбай</h2>
+                            <button type="button" class="element__like-button"></button>
+                        </div>
+                    </li>
+                    <li class="element">
+                        <img class="element__image" alt="Гора Эльбрус" src="./images/gora-elbrus-2.jpg">
+                        <div class="element__title-area">
+                            <h2 class="element__title">Гора Эльбрус</h2>
+                            <button type="button" class="element__like-button"></button>
+                        </div>
+                    </li>
+                    <li class="element">
+                        <img class="element__image" alt="Домбай" src="./images/dombay-2.jpg">
+                        <div class="element__title-area">
+                            <h2 class="element__title">Домбай</h2>
+                            <button type="button" class="element__like-button"></button>
+                        </div>
+                    </li>
+                    <li class="element">
+                        <img class="element__image" alt="Карачаево-Черкесия" src="./images/karachaevsk.jpg">
+                        <div class="element__title-area">
+                            <h2 class="element__title">Карачаево-Черкеск</h2>
+                            <button type="button" class="element__like-button"></button>
+                        </div>
+                    </li>
+                </ul>
             </section>
         </main>
         <footer class="footer">

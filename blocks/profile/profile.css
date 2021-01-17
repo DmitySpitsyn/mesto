@@ -1,5 +1,5 @@
 .profile {
-    padding-top: 36px;
+    padding-top: 40px;
     display: grid;
     grid-template-columns: max-content max-content 1fr 1fr;
     grid-template-rows: max-content max-content;

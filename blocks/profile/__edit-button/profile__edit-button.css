@@ -6,6 +6,8 @@
     background-repeat: no-repeat;
     background-position: center;
     border: 1px solid #FFFFFF;
+    background-color: transparent;
+    outline: 0;
     cursor: pointer;
 }
 
@@ -15,7 +17,7 @@
 
 @media screen and (max-width:680px) {
     .profile__edit-button {
-        margin: 32px 20px 0px 0px;
+        margin: 25px 20px 0px 0px;
         grid-row-start: 3;
         grid-column-start: 2;
         justify-self: start;

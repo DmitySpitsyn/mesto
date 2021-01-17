@@ -1,25 +1,26 @@
-                .form__button-submit {
-                max-width: 358px;
-                height: 50px;
-                background: #000000;
-                border-radius: 2px;
-                margin: 18px 36px 37px 36px;
-                font-size: 18px;
-                line-height: 22px;
-                text-align: center;
-                color: #FFFFFF;
-                cursor: pointer;
+        .form__button-submit {
+            max-width: 358px;
+            height: 50px;
+            background: #000000;
+            border-radius: 2px;
+            margin: 25px 34px 37px 36px;
+            font-size: 18px;
+            line-height: 22px;
+            text-align: center;
+            color: #FFFFFF;
+            cursor: pointer;
+        }
+        
+        .form__button-submit:hover {
+            opacity: 0.8;
+        }
+        
+        @media screen and (max-width:400px) {
+            .form__button-submit {
+                margin: 8px 22px 25px 22px;
+                max-width: 238px;
+                height: 46px;
+                font-size: 14px;
+                line-height: 17px;
             }
-            
-            .form__button-submit:hover {
-                opacity: 0.8;
-            }
-            
-            @media screen and (max-width:400px) {
-                .form__button-submit {
-                    margin: 8px 22px 25px 22px;
-                    max-width: 238px;
-                    height: 46px;
-                    font-size: 14px;
-                    line-height: 17px;
-                }
+        }

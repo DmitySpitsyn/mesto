@@ -1,11 +1,11 @@
 .root {
-    padding-top: 35px;
+    padding-top: 40px;
     background-color: #000000;
     font-family: 'Inter', Arial, sans-serif;
 }
 
 @media screen and (max-width:400px) {
     .root {
-        padding-top: 20px;
+        padding-top: 28px;
     }
 }

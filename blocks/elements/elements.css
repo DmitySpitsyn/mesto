@@ -5,7 +5,7 @@
     max-width: 880px;
     list-style-type: none;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(auto, 283px));
+    grid-template-columns: repeat(auto-fit, minmax(auto, 282px));
     align-items: center;
     justify-content: center;
     row-gap: 20px;
