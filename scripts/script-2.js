@@ -58,9 +58,10 @@ function buttonLikeSwith(evt) {
 }
 
 function ItemDelete(evt) {
+    const editing = event.path[1].children[1].currentSrc;
+    const index = initialCards.map(function(e) { return e.link; }).indexOf(editing);
+    initialCards.splice(index, 1);
     evt.target.closest('.element').remove();
-    console.log(evt.target);
-
 }
 
 function AddItem() {
@@ -79,6 +80,5 @@ function popupImage(evt) {
     containerImage.classList.add('container_visible_on');
     containerForm.classList.remove('container_visible_on');
     image.src = evt.target.src;
-    console.log(evt.target.src);
 
 }
