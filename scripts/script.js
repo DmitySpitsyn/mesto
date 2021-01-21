@@ -28,14 +28,14 @@ const sectionElements = document.querySelector(".section-elements").content;
 let elements = document.querySelector(".elements");
 const addElement = document.querySelector('.profile__add-button');
 const formtitle = document.querySelector('.container__title');
-const containerForm = content.querySelector('.popup_type_form');
-const containerImage = content.querySelector('.popup_type_image');
+const containerForm = content.querySelector('.container_type_form');
+const containerImage = content.querySelector('.container_type_image');
 const image = content.querySelector('.container__image');
 const caption = content.querySelector('.container__caption');
 const popup = content.querySelector('.popup');
-const closeImage = popup.querySelector('.popup_image_close');
+const closeImage = popup.querySelector('.container__button-close_type_image');
 const editbutton = content.querySelector('.profile__edit-button');
-const closeButton = popup.querySelector('.popup_form_close');
+const closeForm = popup.querySelector('.container__button-close_type_form');
 let submit = popup.querySelector('.form');
 const profiletitle = content.querySelector('.profile__title');
 const profilesubtitle = content.querySelector('.profile__subtitle');
@@ -106,7 +106,7 @@ function openPopUp() {
 
 function closePopup() {
 
-    if (event.target === popup || event.target === closeButton || event.target === closeImage) {
+    if (event.target === popup || event.target === closeForm || event.target === closeImage) {
         popup.classList.add('popup_closed');
         setTimeout(function() { popup.classList.remove('popup_opened'); }, 1000);
         popup.classList.remove('popup_type_image');

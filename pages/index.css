@@ -22,6 +22,10 @@
 @import url(../blocks/container/_visible_on/container_visible_on.css);
 @import url(../blocks/container/__image/container__image.css);
 @import url(../blocks/container/__caption/container__caption.css);
+@import url(../blocks/container/_type/container_type_form.css);
+@import url(../blocks/container/_type/container_type_image.css);
+@import url(../blocks/container/__button-close/_type/container__button-close_type_form.css);
+@import url(../blocks/container/__button-close/_type/container__button-close_type_image.css);
 @import url(../blocks/form/form.css);
 @import url(../blocks/form/__input/form__input.css);
 @import url(../blocks/form/__button-submit/form__button-submit.css);
