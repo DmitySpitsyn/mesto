@@ -25,17 +25,17 @@ let initialCards = [{
 ];
 const content = document.querySelector('.content');
 const sectionElements = document.querySelector(".section-elements").content;
-let Elements = document.querySelector(".elements");
-const AddElement = document.querySelector('.profile__add-button');
+let elements = document.querySelector(".elements");
+const addElement = document.querySelector('.profile__add-button');
 const formtitle = document.querySelector('.container__title');
 const containerForm = content.querySelector('.popup__form');
 const containerImage = content.querySelector('.popup__image');
 const image = content.querySelector('.container__image');
 const caption = content.querySelector('.container__caption');
 const popup = content.querySelector('.popup');
-const CloseImage = popup.querySelector('.popup__image_close');
+const closeImage = popup.querySelector('.popup__image_close');
 const editbutton = content.querySelector('.profile__edit-button');
-const CloseButton = popup.querySelector('.popup__form_close');
+const closeButton = popup.querySelector('.popup__form_close');
 let submit = popup.querySelector('.form');
 const profiletitle = content.querySelector('.profile__title');
 const profilesubtitle = content.querySelector('.profile__subtitle');
@@ -47,7 +47,7 @@ const formdescription = popup.querySelector('.form__input_type_description');
 editbutton.addEventListener('click', openForm);
 popup.addEventListener('click', closePopup);
 submit.addEventListener('submit', submitForm);
-AddElement.addEventListener('click', addItem);
+addElement.addEventListener('click', addItem);
 
 render();
 
@@ -62,7 +62,7 @@ function renderItem(text) {
     htmlElement.querySelector('.element__like-button').addEventListener('click', switchLikeButton);
     htmlElement.querySelector('.element__delete-button').addEventListener('click', deleteItem);
     htmlElement.querySelector('.element__image').addEventListener('click', popupImage);
-    Elements.appendChild(htmlElement);
+    elements.appendChild(htmlElement);
 }
 
 
@@ -106,7 +106,7 @@ function openPopUp() {
 
 function closePopup() {
 
-    if (event.target === popup || event.target === CloseButton || event.target === CloseImage) {
+    if (event.target === popup || event.target === closeButton || event.target === closeImage) {
         popup.classList.add('popup_closed');
         setTimeout(function() { popup.classList.remove('popup_opened'); }, 1000);
         popup.classList.remove('popup_type_image');
