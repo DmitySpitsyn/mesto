@@ -29,6 +29,7 @@
 @import url(../blocks/form/form.css);
 @import url(../blocks/form/__input/form__input.css);
 @import url(../blocks/form/__button-submit/form__button-submit.css);
+@import url(../blocks/form/_visible_on/form_visible_on.css);
 @import url(../blocks/elements/elements.css);
 @import url(../blocks/element/element.css);
 @import url(../blocks/element/__image/element__image.css);
