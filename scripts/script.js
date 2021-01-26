@@ -83,8 +83,7 @@ function deleteItem(evt) {
     const editing = evt.target
         .closest(".element")
         .querySelector(".element__image").currentSrc;
-    console.log(editing);
-    let index = initialCards
+    const index = initialCards
         .map(function(e) {
             return e.link;
         })
@@ -164,7 +163,7 @@ function submitFormElement(event) {
 }
 
 function deleteItems() {
-    let elements = document.querySelector(".elements");
+    const elements = document.querySelector(".elements");
     while (elements.firstChild) {
         elements.removeChild(elements.firstChild);
     }
