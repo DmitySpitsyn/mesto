@@ -25,29 +25,33 @@
                 <button type="button" class="profile__edit-button"></button>
                 <button type="button" class="profile__add-button"></button>
             </section>
-            <section class="popup">
-                <div class="container container_type_form-profile">
-                    <button type="button" class="container__button-close"></button>
+            <section class="popup popup-preview popup_type_image">
+                <div class="container">
+                    <button type="button" class="container__button-close popup-preview__button-close"></button>
+                    <img class="container__image" alt="Фотография места" src="#">
+                    <p class="container__caption"></p>
+                </div>
+            </section>
+            <section class="popup popup-profile">
+                <div class="container">
+                    <button type="button" class="container__button-close popup-profile__button-close"></button>
                     <h2 class="container__title">Редактировать профиль</h2>
                     <form method="post" class="form form-profile" name="form-profile">
                         <input type="text" name="profile-name" class="form__input form__input_type_name">
                         <input type="text" name="profile-description" class="form__input form__input_type_description">
-                        <button type="submit" class="form__button-submit">Сохранить</button>
+                        <button type="submit" class="form__button-submit form-profile__button-submit">Сохранить</button>
                     </form>
                 </div>
-                <div class="container container_type_form-element">
-                    <button type="button" class="container__button-close"></button>
+            </section>
+            <section class="popup popup-card-create">
+                <div class="container">
+                    <button type="button" class="container__button-close popup-card-create__button-close"></button>
                     <h2 class="container__title">Редактировать профиль</h2>
                     <form class="form form-add-element" name="form-add-element">
                         <input type="text" name="place-name" class="form__input form__input_type_place-name" placeholder='Название'>
                         <input type="text" name="place-link" class="form__input form__input_type_place-link" placeholder='Ссылка на картинку'>
-                        <button type="submit" class="form__button-submit">Сохранить</button>
+                        <button type="submit" class="form__button-submit form-add-element__button-submit">Сохранить</button>
                     </form>
-                </div>
-                <div class="container container_type_image">
-                    <button type="button" class="container__button-close"></button>
-                    <img class="container__image" alt="Фотография места" src="#">
-                    <p class="container__caption"></p>
                 </div>
             </section>
             <section class="template-elements">
