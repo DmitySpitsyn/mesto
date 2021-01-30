@@ -10,7 +10,7 @@
 
 <body class="root">
     <div class="page">
-        <header class="header">
+        <header class="header">git
             <div class="header__logo">
                 <a class="header__link" href="#" target="_blank"></a>
             </div>
@@ -25,20 +25,35 @@
                 <button type="button" class="profile__edit-button"></button>
                 <button type="button" class="profile__add-button"></button>
             </section>
-            <section class="popup">
-                <div class="container popup__form">
-                    <button type="button" class="container__button-close popup__form_close"></button>
+            <section class="popup popup-preview popup_type_image">
+                <div class="container">
+                    <button type="button" class="container__button-close popup-preview__button-close"></button>
+                    <img class="container__image" alt="Фотография места" src="#">
+                    <p class="container__caption"></p>
+                </div>
+            </section>
+            <section class="popup popup-profile">
+                <div class="container">
+                    <button type="button" class="container__button-close popup-profile__button-close"></button>
                     <h2 class="container__title">Редактировать профиль</h2>
-                    <form class="form" name="form-profile">
-                        <input type="text" name="profile-name" class="form__input form__input_type_name">
-                        <input type="text" name="profile-description" class="form__input form__input_type_description">
-                        <button type="submit" class="form__button-submit">Сохранить</button>
+                    <form class="form form-profile" novalidate name="form-profile">
+                        <input type="text" name="profile-name" class="form__input form__input_type_name" minlength="2" maxlength="40">
+                        <span class="profile-name-error"></span>
+                        <input type="text" name="profile-description" class="form__input form__input_type_description" minlength="2" maxlength="200">
+                        <span class="profile-description-error"></span>
+                        <button type="submit" class="form__button-submit form-profile__button-submit">Сохранить</button>
                     </form>
                 </div>
-                <div class="container popup__image">
-                    <button type="button" class="container__button-close popup__image_close"></button>
-                    <img class="container__image" alt="" src="#">
-                    <p class="container__caption"></p>
+            </section>
+            <section class="popup popup-card-create">
+                <div class="container">
+                    <button type="button" class="container__button-close popup-card-create__button-close"></button>
+                    <h2 class="container__title">Редактировать профиль</h2>
+                    <form class="form form-add-element" novalidate name="form-add-element">
+                        <input type="text" name="place-name" class="form__input form__input_type_place-name" placeholder='Название'>
+                        <input type="text" name="place-link" class="form__input form__input_type_place-link" placeholder='Ссылка на картинку'>
+                        <button type="submit" class="form__button-submit form-add-element__button-submit">Сохранить</button>
+                    </form>
                 </div>
             </section>
             <section class="template-elements">
@@ -46,7 +61,7 @@
                 <template class="section-elements">
                     <li class="element">
                         <button type="button" class="element__delete-button"></button>
-                        <img class="element__image" alt="" src="#">
+                        <img class="element__image" alt="Фотография места" src="#">
                         <div class="element__title-area">
                             <h2 class="element__title"></h2>
                             <button type="button" class="element__like-button"></button>
@@ -59,6 +74,7 @@
             <p class="footer__text">&commat; 2020г. Дмитрий Спицын.</p>
         </footer>
     </div>
+    <script src="scripts/script-2.js"></script>
     <script src="scripts/script.js"></script>
 </body>
 

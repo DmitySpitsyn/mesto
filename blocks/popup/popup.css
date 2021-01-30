@@ -11,4 +11,11 @@
     padding: 0;
     z-index: 2;
     visibility: hidden;
+    opacity: 0;
+    transition: all linear 1s;
+}
+
+.popup.popup_opened {
+    visibility: visible;
+    opacity: 1;
 }
