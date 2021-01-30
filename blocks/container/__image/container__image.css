@@ -1,0 +1,10 @@
+.container__image {
+    height: 540px;
+    object-fit: cover;
+}
+
+@media screen and (max-width:600px) {
+    .container__image {
+        height: 299px;
+    }
+}

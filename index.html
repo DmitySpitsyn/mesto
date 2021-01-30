@@ -25,62 +25,47 @@
                 <button type="button" class="profile__edit-button"></button>
                 <button type="button" class="profile__add-button"></button>
             </section>
-            <section class="popup">
+            <section class="popup popup-preview popup_type_image">
                 <div class="container">
-                    <button type="button" class="container__button-close"></button>
+                    <button type="button" class="container__button-close popup-preview__button-close"></button>
+                    <img class="container__image" alt="Фотография места" src="#">
+                    <p class="container__caption"></p>
+                </div>
+            </section>
+            <section class="popup popup-profile">
+                <div class="container">
+                    <button type="button" class="container__button-close popup-profile__button-close"></button>
                     <h2 class="container__title">Редактировать профиль</h2>
-                    <form class="form" name="form-profile">
+                    <form method="post" class="form form-profile" name="form-profile">
                         <input type="text" name="profile-name" class="form__input form__input_type_name">
                         <input type="text" name="profile-description" class="form__input form__input_type_description">
-                        <button type="submit" class="form__button-submit">Сохранить</button>
+                        <button type="submit" class="form__button-submit form-profile__button-submit">Сохранить</button>
                     </form>
                 </div>
             </section>
-            <section class="section-elements">
-                <ul class="elements">
+            <section class="popup popup-card-create">
+                <div class="container">
+                    <button type="button" class="container__button-close popup-card-create__button-close"></button>
+                    <h2 class="container__title">Редактировать профиль</h2>
+                    <form class="form form-add-element" name="form-add-element">
+                        <input type="text" name="place-name" class="form__input form__input_type_place-name" placeholder='Название'>
+                        <input type="text" name="place-link" class="form__input form__input_type_place-link" placeholder='Ссылка на картинку'>
+                        <button type="submit" class="form__button-submit form-add-element__button-submit">Сохранить</button>
+                    </form>
+                </div>
+            </section>
+            <section class="template-elements">
+                <ul class="elements"></ul>
+                <template class="section-elements">
                     <li class="element">
-                        <img class="element__image" alt="Карачаевск" src="./images/karachaevsk.jpg">
+                        <button type="button" class="element__delete-button"></button>
+                        <img class="element__image" alt="Фотография места" src="#">
                         <div class="element__title-area">
-                            <h2 class="element__title">Карачаевск</h2>
+                            <h2 class="element__title"></h2>
                             <button type="button" class="element__like-button"></button>
                         </div>
                     </li>
-                    <li class="element">
-                        <img class="element__image" alt="Гора Эльбрус" src="./images/gora-elbrus-1.jpg">
-                        <div class="element__title-area">
-                            <h2 class="element__title">Гора Эльбрус</h2>
-                            <button type="button" class="element__like-button"></button>
-                        </div>
-                    </li>
-                    <li class="element">
-                        <img class="element__image" alt="Домбай" src="./images/dombay.jpg">
-                        <div class="element__title-area">
-                            <h2 class="element__title">Домбай</h2>
-                            <button type="button" class="element__like-button"></button>
-                        </div>
-                    </li>
-                    <li class="element">
-                        <img class="element__image" alt="Гора Эльбрус" src="./images/gora-elbrus-2.jpg">
-                        <div class="element__title-area">
-                            <h2 class="element__title">Гора Эльбрус</h2>
-                            <button type="button" class="element__like-button"></button>
-                        </div>
-                    </li>
-                    <li class="element">
-                        <img class="element__image" alt="Домбай" src="./images/dombay-2.jpg">
-                        <div class="element__title-area">
-                            <h2 class="element__title">Домбай</h2>
-                            <button type="button" class="element__like-button"></button>
-                        </div>
-                    </li>
-                    <li class="element">
-                        <img class="element__image" alt="Карачаево-Черкесия" src="./images/karachaevsk.jpg">
-                        <div class="element__title-area">
-                            <h2 class="element__title">Карачаево-Черкеск</h2>
-                            <button type="button" class="element__like-button"></button>
-                        </div>
-                    </li>
-                </ul>
+                </template>
             </section>
         </main>
         <footer class="footer">
