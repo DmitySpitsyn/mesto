@@ -123,7 +123,6 @@ function popupImage(evt) {
 
 function openPopUp(item) {
     setEventListeners(item);
-    checkInputValidity(item);
     item.classList.add("popup_opened");
 
 }
