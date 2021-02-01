@@ -102,15 +102,15 @@ function deleteItem(evt) {
 }
 
 function openFormProfile() {
-    openPopUp(profilePopup);
     formName.value = profiletitle.textContent;
     formdescription.value = profilesubtitle.textContent;
+    openPopUp(profilePopup);
 }
 
 function openFormItem() {
-    openPopUp(cardPopup);
     formPlace.value = "";
     formLink.value = "";
+    openPopUp(cardPopup);
 }
 
 function popupImage(evt) {
@@ -129,12 +129,16 @@ function openPopUp(item) {
 
 function closePopup(element) {
     element.closest(".popup").classList.remove("popup_opened");
+    document.removeEventListener("keydown", function(evt) {
+        pressKey(evt, element);
+    });
 }
 
 function submitFormProfile(event) {
     event.preventDefault();
     profiletitle.textContent = formName.value;
     profilesubtitle.textContent = formdescription.value;
+
 }
 
 function submitFormElement(event) {
@@ -142,6 +146,7 @@ function submitFormElement(event) {
     initialCards.splice(0, 0, { name: formPlace.value, link: formLink.value });
     deleteItems();
     render();
+
 }
 
 function deleteItems() {
