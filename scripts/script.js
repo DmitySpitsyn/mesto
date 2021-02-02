@@ -49,11 +49,6 @@ const submitButtonProfile = content.querySelector(".form-profile__button-submit"
 const submitButtonCard = content.querySelector(".form-add-element__button-submit");
 
 
-//closeFormProfile.addEventListener("click", closePopup);
-//closeFormCard.addEventListener("click", closePopup);
-//closePreview.addEventListener("click", closePopup);
-//submitButtonProfile.addEventListener("click", closePopup);
-//submitButtonCard.addEventListener("click", closePopup);
 editbutton.addEventListener("click", openFormProfile);
 addElement.addEventListener("click", openFormItem);
 formProfile.addEventListener("submit", submitFormProfile);
@@ -122,16 +117,13 @@ function popupImage(evt) {
 }
 
 function openPopUp(item) {
-    setEventListeners(item);
+    enableValidation();
     item.classList.add("popup_opened");
 
 }
 
 function closePopup(element) {
     element.closest(".popup").classList.remove("popup_opened");
-    document.removeEventListener("keydown", function(evt) {
-        pressKey(evt, element);
-    });
 }
 
 function submitFormProfile(event) {
@@ -153,5 +145,21 @@ function deleteItems() {
     const elements = document.querySelector(".elements");
     while (elements.firstChild) {
         elements.removeChild(elements.firstChild);
+    }
+}
+
+function checkElementClose(evt) {
+    if (
+        evt.target.classList.contains("container__button-close") ||
+        evt.target.classList.contains("popup") ||
+        evt.target.classList.contains("form__button-submit")
+    ) {
+        closePopup(evt.target);
+    }
+}
+
+function pressKey(evt, popup) {
+    if (evt.key === "Escape") {
+        closePopup(popup);
     }
 }

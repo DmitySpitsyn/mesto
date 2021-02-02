@@ -20,22 +20,19 @@ function checkInputValidity(formElement, inputElement) {
     }
 }
 
-function setEventListeners(element) {
-    const formElement = element.querySelector(".form");
-    const inputList = Array.from(formElement.querySelectorAll(".form__input"));
-    toggleButtonState(inputList, formElement);
-    element.addEventListener("click", function(evt) {
-        checkElementClose(evt);
-    });
-    document.addEventListener("keydown", function(evt) {
-        pressKey(evt, element);
-    });
 
-    element.addEventListener("input", function() {
-        inputList.forEach((inputElement) => {
-            checkInputValidity(formElement, inputElement);
-            toggleButtonState(inputList, formElement);
-        });
+function setEventListener(popup, inputElement, formElement, inputList) {
+    inputElement.addEventListener("input", function() {
+        checkInputValidity(formElement, inputElement);
+        toggleButtonState(inputList, formElement);
+    });
+    const functionKey = function(evt) {
+        pressKey(evt, popup)
+        document.removeEventListener("keydown", functionKey);
+    };
+    document.addEventListener("keydown", functionKey);
+    popup.addEventListener("click", function(evt) {
+        checkElementClose(evt);
     });
 }
 
@@ -46,31 +43,29 @@ function hasInvalidInput(inputList) {
 }
 
 function toggleButtonState(inputList, formElement) {
-    console.log("ok");
+
     const buttonElement = formElement.querySelector(".form__button-submit");
     if (hasInvalidInput(inputList)) {
-        console.log("no");
         buttonElement.classList.add("form__button-submit_inactive");
         buttonElement.disabled = true;
     } else {
-        console.log("yes");
         buttonElement.classList.remove("form__button-submit_inactive");
         buttonElement.disabled = false;
     }
 }
 
-function checkElementClose(evt) {
-    if (
-        evt.target.classList.contains("container__button-close") ||
-        evt.target.classList.contains("popup") ||
-        evt.target.classList.contains("form__button-submit")
-    ) {
-        closePopup(evt.target);
-    }
-}
+function enableValidation() {
+    const popups = Array.from(document.querySelectorAll(".popup"));
+    popups.forEach((popup) => {
+        const formsElement = Array.from(document.querySelectorAll(".form"));
+        formsElement.forEach((formElement) => {
+            const inputList = Array.from(formElement.querySelectorAll(".form__input"));
+            inputList.forEach((inputElement) => {
+                toggleButtonState(inputList, formElement);
+                checkInputValidity(formElement, inputElement);
+                setEventListener(popup, inputElement, formElement, inputList);
 
-function pressKey(evt, element) {
-    if (evt.key === "Escape") {
-        closePopup(element);
-    }
+            });
+        });
+    });
 }
