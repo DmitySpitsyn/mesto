@@ -37,16 +37,19 @@ function hasInvalidInput(inputList) {
 function toggleButtonState(submitButtonSelector, inactiveButtonClass, inputList, formElement) {
     const buttonElement = formElement.querySelector(submitButtonSelector);
     if (hasInvalidInput(inputList)) {
-        buttonElement.classList.add(inactiveButtonClass);
-        buttonElement.disabled = true;
+        buttonElementDisabled(buttonElement, inactiveButtonClass)
     } else {
         buttonElement.classList.remove(inactiveButtonClass);
         buttonElement.disabled = false;
         formElement.onsubmit = function() {
-            buttonElement.classList.add(inactiveButtonClass);
-            buttonElement.disabled = true;
+            buttonElementDisabled(buttonElement, inactiveButtonClass)
         };
     }
+}
+
+function buttonElementDisabled(buttonElement, inactiveButtonClass) {
+    buttonElement.classList.add(inactiveButtonClass);
+    buttonElement.disabled = true;
 }
 
 function enableValidation(text) {
