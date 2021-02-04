@@ -57,12 +57,13 @@ formElement.addEventListener("submit", submitFormElement);
 render();
 
 function render() {
-    initialCards.forEach(createCard);
+    initialCards.forEach(renderItem);
 }
 
 
-function renderItem(htmlElement) {
-    elements.appendChild(htmlElement);
+function renderItem(text) {
+    const item = createCard(text)
+    elements.appendChild(item);
     /*  htmlElement.querySelector(".element__image").src = text.link;
       htmlElement.querySelector(".element__title").textContent = text.name;
       /*  htmlElement
@@ -80,9 +81,21 @@ function renderItem(htmlElement) {
 
 function createCard(text) {
     const htmlElement = sectionElements.cloneNode(true);
-    htmlElement.querySelector(".element__image").src = text.link;
+    const elementImage = htmlElement.querySelector(".element__image");
+    elementImage.src = text.link;
+    elementImage.alt = ('Фотография места ' + text.name);
     htmlElement.querySelector(".element__title").textContent = text.name;
-    renderItem(htmlElement);
+    htmlElement
+        .querySelector(".element__delete-button")
+        .addEventListener("click", deleteItem);
+    htmlElement
+        .querySelector(".element__like-button")
+        .addEventListener("click", switchLikeButton);
+    elementImage.addEventListener("click", function() {
+        popupImage(text)
+    });
+
+    return htmlElement;
 }
 
 function switchLikeButton(evt) {
@@ -92,15 +105,15 @@ function switchLikeButton(evt) {
 }
 
 function deleteItem(evt) {
-    const editing = evt.target
-        .closest(".element")
-        .querySelector(".element__image").currentSrc;
-    const findindex = initialCards
-        .map(function(e) {
-            return e.link;
-        })
-        .indexOf(editing);
-    initialCards.splice(findindex, 1);
+    /*    const editing = evt.target
+            .closest(".element")
+            .querySelector(".element__image").currentSrc;
+        const findindex = initialCards
+            .map(function(e) {
+                return e.link;
+            })
+            .indexOf(editing);
+        initialCards.splice(findindex, 1);*/
     evt.target.closest(".element").remove();
 }
 
@@ -116,12 +129,12 @@ function openFormItem() {
     openPopUp(cardPopup);
 }
 
-function popupImage(evt) {
+function popupImage(text) {
     openPopUp(previewPopup);
-    image.src = evt.target.src;
-    caption.textContent = evt.target
-        .closest(".element")
-        .querySelector(".element__title").textContent;
+    image.src = text.link;
+    caption.textContent = text.name;
+    image.alt = ('Фото места ' + text.name);
+
 }
 
 function openPopUp(item) {
@@ -143,18 +156,20 @@ function submitFormProfile(event) {
 
 function submitFormElement(event) {
     event.preventDefault();
-    initialCards.splice(0, 0, { name: formPlace.value, link: formLink.value });
-    deleteItems();
-    render();
+    /*  initialCards.splice(0, 0, { name: formPlace.value, link: formLink.value });
+      deleteItems();
+      render();*/
+    const htmlElement = createCard({ name: formPlace.value, link: formLink.value });
+    elements.prepend(htmlElement);
 
 }
 
-function deleteItems() {
+/*function deleteItems() {
     const elements = document.querySelector(".elements");
     while (elements.firstChild) {
         elements.removeChild(elements.firstChild);
     }
-}
+}*/
 
 function checkElementClose(evt) {
     if (
