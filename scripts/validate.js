@@ -26,14 +26,14 @@ function setEventListener(popup, inputElement, formElement, inputList) {
         checkInputValidity(formElement, inputElement);
         toggleButtonState(inputList, formElement);
     });
-    const functionKey = function(evt) {
-        pressKey(evt, popup)
-        document.removeEventListener("keydown", functionKey);
-    };
-    document.addEventListener("keydown", functionKey);
+    /*  const functionKey = function(evt) {
+          pressKey(evt, popup)
+          document.removeEventListener("keydown", functionKey);
+      };
+      document.addEventListener("keydown", functionKey);
     popup.addEventListener("click", function(evt) {
         checkElementClose(evt);
-    });
+    });*/
 }
 
 function hasInvalidInput(inputList) {
@@ -69,3 +69,4 @@ function enableValidation() {
         });
     });
 }
+enableValidation()
