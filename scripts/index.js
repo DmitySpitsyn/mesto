@@ -57,24 +57,32 @@ formElement.addEventListener("submit", submitFormElement);
 render();
 
 function render() {
-    initialCards.forEach(renderItem);
+    initialCards.forEach(createCard);
 }
 
 
-function renderItem(text) {
+function renderItem(htmlElement) {
+    elements.appendChild(htmlElement);
+    /*  htmlElement.querySelector(".element__image").src = text.link;
+      htmlElement.querySelector(".element__title").textContent = text.name;
+      /*  htmlElement
+            .querySelector(".element__like-button")
+            .addEventListener("click", switchLikeButton);
+        htmlElement
+            .querySelector(".element__delete-button")
+            .addEventListener("click", deleteItem);
+        htmlElement
+            .querySelector(".element__image")
+            .addEventListener("click", popupImage);*/
+    //  elements.appendChild(htmlElement);
+
+}
+
+function createCard(text) {
     const htmlElement = sectionElements.cloneNode(true);
     htmlElement.querySelector(".element__image").src = text.link;
     htmlElement.querySelector(".element__title").textContent = text.name;
-    htmlElement
-        .querySelector(".element__like-button")
-        .addEventListener("click", switchLikeButton);
-    htmlElement
-        .querySelector(".element__delete-button")
-        .addEventListener("click", deleteItem);
-    htmlElement
-        .querySelector(".element__image")
-        .addEventListener("click", popupImage);
-    elements.appendChild(htmlElement);
+    renderItem(htmlElement);
 }
 
 function switchLikeButton(evt) {
