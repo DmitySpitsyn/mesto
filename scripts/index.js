@@ -118,15 +118,14 @@ function popupImage(text) {
 function openPopUp(popup) {
     popup.classList.add("popup_opened");
     document.addEventListener('keydown', closeByEscape);
-    popup.addEventListener("click", function(evt) {
-        closeByClick(evt);
-    });
+    popup.addEventListener("click", closeByClick)
 
 }
 
 function closePopup(popup) {
     popup.classList.remove("popup_opened");
     document.removeEventListener('keydown', closeByEscape);
+    popup.removeEventListener("click", closeByClick)
 }
 
 function submitFormProfile(event) {
