@@ -53,7 +53,7 @@ editbutton.addEventListener("click", openFormProfile);
 addElement.addEventListener("click", openFormItem);
 formProfile.addEventListener("submit", submitFormProfile);
 formElement.addEventListener("submit", submitFormElement);
-
+/*
 render();
 
 function render() {
@@ -91,9 +91,9 @@ function switchLikeButton(evt) {
         .classList.toggle("element__like-button_active");
 }
 
-function deleteItem(evt) {
+/*function deleteItem(evt) {
     evt.target.closest(".element").remove();
-}
+}*/
 
 function openFormProfile() {
     formName.value = profiletitle.textContent;
@@ -137,8 +137,9 @@ function submitFormProfile(event) {
 
 function submitFormElement(event) {
     event.preventDefault();
-    const htmlElement = createCard({ name: formPlace.value, link: formLink.value });
-    elements.prepend(htmlElement);
+    const htmlElement = new Card({ name: formPlace.value, link: formLink.value }, ".section-elements");
+    const cardElement = htmlElement._creatCard();
+    elements.prepend(cardElement);
 
 }
 
