@@ -45,9 +45,12 @@ const formLink = content.querySelector(".form__input_type_place-link");
 const closeFormProfile = content.querySelector(".popup-profile__button-close");
 const closeFormCard = content.querySelector(".popup-card-create__button-close");
 const closePreview = content.querySelector(".popup-preview__button-close");
-const submitButtonProfile = content.querySelector(".form-profile__button-submit");
-const submitButtonCard = content.querySelector(".form-add-element__button-submit");
-
+const submitButtonProfile = content.querySelector(
+    ".form-profile__button-submit"
+);
+const submitButtonCard = content.querySelector(
+    ".form-add-element__button-submit"
+);
 
 editbutton.addEventListener("click", openFormProfile);
 addElement.addEventListener("click", openFormItem);
@@ -107,40 +110,40 @@ function openFormItem() {
     openPopUp(cardPopup);
 }
 
-function popupImage(text) {
+function popupImage(evt) {
     openPopUp(previewPopup);
-    image.src = text.link;
-    caption.textContent = text.name;
-    image.alt = ('Фото места ' + text.name);
-
+    image.src = evt.target.src;
+    caption.textContent = evt.target
+        .closest(".element")
+        .querySelector(".element__title").textContent;
+    image.alt = evt.target.alt;
 }
 
 function openPopUp(popup) {
     popup.classList.add("popup_opened");
-    document.addEventListener('keydown', closeByEscape);
-    popup.addEventListener("click", closeByClick)
-
+    document.addEventListener("keydown", closeByEscape);
+    popup.addEventListener("click", closeByClick);
 }
 
 function closePopup(popup) {
     popup.classList.remove("popup_opened");
-    document.removeEventListener('keydown', closeByEscape);
-    popup.removeEventListener("click", closeByClick)
+    document.removeEventListener("keydown", closeByEscape);
+    popup.removeEventListener("click", closeByClick);
 }
 
 function submitFormProfile(event) {
     event.preventDefault();
     profiletitle.textContent = formName.value;
     profilesubtitle.textContent = formdescription.value;
-
 }
 
 function submitFormElement(event) {
     event.preventDefault();
-    const htmlElement = new Card({ name: formPlace.value, link: formLink.value }, ".section-elements");
+    const htmlElement = new Card({ name: formPlace.value, link: formLink.value },
+        ".section-elements"
+    );
     const cardElement = htmlElement._creatCard();
     elements.prepend(cardElement);
-
 }
 
 function closeByClick(evt) {
@@ -149,13 +152,13 @@ function closeByClick(evt) {
         evt.target.classList.contains("popup") ||
         evt.target.classList.contains("form__button-submit")
     ) {
-        closePopup(evt.target.closest('.popup'));
+        closePopup(evt.target.closest(".popup"));
     }
 }
 
 function closeByEscape(evt) {
     if (evt.key === "Escape") {
-        const openedPopup = document.querySelector('.popup_opened')
+        const openedPopup = document.querySelector(".popup_opened");
         closePopup(openedPopup);
     }
 }

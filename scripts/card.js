@@ -57,7 +57,7 @@ class Card {
             .addEventListener("click", this._switchLikeButton);
         this._element
             .querySelector(".element__image")
-            //    .addEventListener("click", popupImage(this._data));
+            .addEventListener("click", popupImage);
     }
     _switchLikeButton(evt) {
         evt.target
@@ -68,14 +68,6 @@ class Card {
         evt.target.closest(".element").remove();
     }
 }
-
-/*
-function createCard(text) {
-  
-    elementImage.addEventListener("click", function() {
-        popupImage(text);
-    });
-}*/
 
 inCards.forEach((data) => {
     const card = new Card(data, ".section-elements");
