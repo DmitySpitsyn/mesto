@@ -1,3 +1,6 @@
+import { Card } from "./Card.js";
+import { FormProfile, FormAddElement } from "./FormValidator.js";
+
 const initialCards = [{
         name: "Архыз",
         link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
@@ -23,11 +26,16 @@ const initialCards = [{
         link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
     },
 ];
+const validationSetting = {
+    inputSelector: ".form__input",
+    submitButtonSelector: ".form__button-submit",
+    inactiveButtonClass: "form__button-submit_inactive",
+    inputErrorClass: "form__input_type_error",
+    errorClass: "form__input-error_active",
+};
 const content = document.querySelector(".content");
-const sectionElements = document.querySelector(".section-elements").content;
 const elements = document.querySelector(".elements");
 const addElement = document.querySelector(".profile__add-button");
-const formtitle = document.querySelector(".container__title");
 const profilePopup = content.querySelector(".popup-profile");
 const cardPopup = content.querySelector(".popup-card-create");
 const previewPopup = content.querySelector(".popup-preview");
@@ -42,80 +50,41 @@ const formName = content.querySelector(".form__input_type_name");
 const formdescription = content.querySelector(".form__input_type_description");
 const formPlace = content.querySelector(".form__input_type_place-name");
 const formLink = content.querySelector(".form__input_type_place-link");
-const closeFormProfile = content.querySelector(".popup-profile__button-close");
-const closeFormCard = content.querySelector(".popup-card-create__button-close");
-const closePreview = content.querySelector(".popup-preview__button-close");
-const submitButtonProfile = content.querySelector(
-    ".form-profile__button-submit"
-);
-const submitButtonCard = content.querySelector(
-    ".form-add-element__button-submit"
-);
 
 editbutton.addEventListener("click", openFormProfile);
 addElement.addEventListener("click", openFormItem);
 formProfile.addEventListener("submit", submitFormProfile);
 formElement.addEventListener("submit", submitFormElement);
-/*
-render();
 
-function render() {
-    initialCards.forEach(renderItem);
-}
+initialCards.forEach((data) => {
+    const card = new Card(data, ".section-elements");
+    const cardElement = card._creatCard();
 
-
-function renderItem(text) {
-    const item = createCard(text)
-    elements.appendChild(item);
-}
-
-function createCard(text) {
-    const htmlElement = sectionElements.cloneNode(true);
-    const elementImage = htmlElement.querySelector(".element__image");
-    elementImage.src = text.link;
-    elementImage.alt = ('Фотография места ' + text.name);
-    htmlElement.querySelector(".element__title").textContent = text.name;
-    htmlElement
-        .querySelector(".element__delete-button")
-        .addEventListener("click", deleteItem);
-    htmlElement
-        .querySelector(".element__like-button")
-        .addEventListener("click", switchLikeButton);
-    elementImage.addEventListener("click", function() {
-        popupImage(text)
-    });
-
-    return htmlElement;
-}
-
-function switchLikeButton(evt) {
-    evt.target
-        .closest(".element__like-button")
-        .classList.toggle("element__like-button_active");
-}
-
-/*function deleteItem(evt) {
-    evt.target.closest(".element").remove();
-}*/
+    elements.appendChild(cardElement);
+});
 
 function openFormProfile() {
     formName.value = profiletitle.textContent;
     formdescription.value = profilesubtitle.textContent;
+    const profile = new FormProfile(validationSetting, ".form-profile");
+    const profileForm = profile.enableValidation();
     openPopUp(profilePopup);
 }
 
 function openFormItem() {
     formPlace.value = "";
     formLink.value = "";
+    const element = new FormAddElement(validationSetting, ".form-add-element");
+    const addElementForm = element.enableValidation();
     openPopUp(cardPopup);
 }
 
-function popupImage(name, link) {
+export function popupImage(name, link) {
     openPopUp(previewPopup);
     console.log(name, link);
     image.src = link;
     caption.textContent = name;
-    image.alt = ('Фото места ' + name);
+    image.alt = "Фото места " + name;
 }
 
 function openPopUp(popup) {

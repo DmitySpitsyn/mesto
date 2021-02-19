@@ -1,30 +1,5 @@
-const inCards = [{
-        name: "Архыз",
-        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-    },
-    {
-        name: "Челябинская область",
-        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-    },
-    {
-        name: "Иваново",
-        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-    },
-    {
-        name: "Камчатка",
-        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-    },
-    {
-        name: "Холмогорский район",
-        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-    },
-    {
-        name: "Байкал",
-        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-    },
-];
-
-class Card {
+import { popupImage } from './index.js';
+export class Card {
     constructor(data, cardSelectror) {
         this._name = data.name;
         this._link = data.link;
@@ -57,6 +32,7 @@ class Card {
             .querySelector(".element__image")
             .addEventListener("click", (f) => { popupImage(this._name, this._link) });
     }
+
     _switchLikeButton(evt) {
         evt.target
             .closest(".element__like-button")
@@ -66,10 +42,3 @@ class Card {
         evt.target.closest(".element").remove();
     }
 }
-
-inCards.forEach((data) => {
-    const card = new Card(data, ".section-elements");
-    const cardElement = card._creatCard();
-
-    elements.appendChild(cardElement);
-});

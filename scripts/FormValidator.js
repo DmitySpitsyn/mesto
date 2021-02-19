@@ -1,11 +1,3 @@
-const validationSetting = {
-    inputSelector: ".form__input",
-    submitButtonSelector: ".form__button-submit",
-    inactiveButtonClass: "form__button-submit_inactive",
-    inputErrorClass: "form__input_type_error",
-    errorClass: "form__input-error_active",
-};
-
 class FormValidator {
     constructor(data, formSelector) {
         this._submitButtonSelector = data.submitButtonSelector;
@@ -19,6 +11,7 @@ class FormValidator {
     enableValidation() {
         const _form = document.querySelector(this._formSelector);
         const _inputs = _form.querySelectorAll(this._inputSelector);
+        this._checkInputValidity(_form, _inputs);
         this._setEventListner(_form, _inputs);
     }
 
@@ -44,7 +37,7 @@ class FormValidator {
     _enableButtonSubmit(_form, _buttonElement) {
         _buttonElement.classList.remove(this._inactiveButtonClass);
         _buttonElement.disabled = false;
-        _form.onsubmit = (f) => { this._disableButtonSubmit(_buttonElement) };
+
     }
     _disableButtonSubmit(_buttonElement) {
         _buttonElement.classList.add(this._inactiveButtonClass);
@@ -60,7 +53,7 @@ class FormValidator {
     }
     _hasInvalidInput(_inputs) {
         const _inputElements = Array.from(_inputs);
-        return _inputElements.some(_input => {
+        return _inputElements.some((_input) => {
             return !_input.validity.valid;
         });
     }
@@ -75,5 +68,14 @@ class FormValidator {
         _errorElement.textContent = "";
     }
 }
-const validation = new FormValidator(validationSetting, ".form-profile");
-const formValidator = validation.enableValidation();
+
+export class FormProfile extends FormValidator {
+    constructor(data, formSelector) {
+        super(data, formSelector)
+    }
+}
+export class FormAddElement extends FormValidator {
+    constructor(data, formSelector) {
+        super(data, formSelector)
+    }
+}
