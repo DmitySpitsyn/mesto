@@ -35,7 +35,6 @@ class Card {
         const _cardElement = document
             .querySelector(this._cardSelector)
             .content.cloneNode(true);
-        console.log(_cardElement);
         return _cardElement;
     }
     _creatCard() {
@@ -45,7 +44,6 @@ class Card {
         const _elementImage = this._element.querySelector(".element__image");
         _elementImage.src = this._link;
         _elementImage.alt = "Фотография места " + this._name;
-        console.log("ok");
         return this._element;
     }
     _setEventListeners() {
@@ -57,7 +55,7 @@ class Card {
             .addEventListener("click", this._switchLikeButton);
         this._element
             .querySelector(".element__image")
-            .addEventListener("click", popupImage);
+            .addEventListener("click", (f) => { popupImage(this._name, this._link) });
     }
     _switchLikeButton(evt) {
         evt.target

@@ -110,13 +110,12 @@ function openFormItem() {
     openPopUp(cardPopup);
 }
 
-function popupImage(evt) {
+function popupImage(name, link) {
     openPopUp(previewPopup);
-    image.src = evt.target.src;
-    caption.textContent = evt.target
-        .closest(".element")
-        .querySelector(".element__title").textContent;
-    image.alt = evt.target.alt;
+    console.log(name, link);
+    image.src = link;
+    caption.textContent = name;
+    image.alt = ('Фото места ' + name);
 }
 
 function openPopUp(popup) {

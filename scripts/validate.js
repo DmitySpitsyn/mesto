@@ -29,7 +29,9 @@ function setEventListener(inputErrorClass, errorClass, submitButtonSelector, ina
 }
 
 function hasInvalidInput(inputList) {
+    console.log(inputList)
     return inputList.some((inputElement) => {
+        console.log(inputElement)
         return !inputElement.validity.valid;
     });
 }
