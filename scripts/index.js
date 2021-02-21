@@ -81,7 +81,6 @@ function openFormItem() {
 
 export function popupImage(name, link) {
     openPopUp(previewPopup);
-    console.log(name, link);
     image.src = link;
     caption.textContent = name;
     image.alt = "Фото места " + name;
