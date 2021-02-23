@@ -1,5 +1,5 @@
 import { Card } from "./Card.js";
-import { FormProfile, FormAddElement } from "./FormValidator.js";
+import { FormValidator } from "./FormValidator.js";
 
 const initialCards = [{
         name: "Архыз",
@@ -63,19 +63,23 @@ initialCards.forEach((data) => {
     elements.appendChild(cardElement);
 });
 
+const profileFormValidator = new FormValidator(validationSetting, ".form-profile");
+const profileValidator = profileFormValidator.enableValidation();
+const addFormValidator = new FormValidator(validationSetting, ".form-add-element");
+const addValidator = addFormValidator.enableValidation();
+
+
 function openFormProfile() {
     formName.value = profiletitle.textContent;
     formdescription.value = profilesubtitle.textContent;
-    const profile = new FormProfile(validationSetting, ".form-profile");
-    const profileForm = profile.enableValidation();
+    profileFormValidator.checkInputValidity();
     openPopUp(profilePopup);
 }
 
 function openFormItem() {
     formPlace.value = "";
     formLink.value = "";
-    const element = new FormAddElement(validationSetting, ".form-add-element");
-    const addElementForm = element.enableValidation();
+    addFormValidator.checkInputValidity();
     openPopUp(cardPopup);
 }
 
