@@ -1,4 +1,4 @@
-import { popupImage } from './index.js';
+import { popupImage } from '../scripts/index.js';
 export class Card {
     constructor(data, cardSelectror) {
         this._name = data.name;
