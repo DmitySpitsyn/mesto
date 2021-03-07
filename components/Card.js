@@ -1,4 +1,4 @@
-import { popupImage } from '../scripts/index.js';
+import { popupImage } from "../scripts/index.js";
 export class Card {
     constructor(data, cardSelectror) {
         this._name = data.name;
@@ -30,7 +30,9 @@ export class Card {
             .addEventListener("click", this._switchLikeButton);
         this._element
             .querySelector(".element__image")
-            .addEventListener("click", (f) => { popupImage(this._name, this._link) });
+            .addEventListener("click", (f) => {
+                popupImage(this._name, this._link);
+            });
     }
 
     _switchLikeButton(evt) {

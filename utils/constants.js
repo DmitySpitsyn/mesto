@@ -44,6 +44,8 @@ export const formElement = content.querySelector(".form-add-element");
 export const profiletitle = content.querySelector(".profile__title");
 export const profilesubtitle = content.querySelector(".profile__subtitle");
 export const formName = content.querySelector(".form__input_type_name");
-export const formdescription = content.querySelector(".form__input_type_description");
+export const formdescription = content.querySelector(
+    ".form__input_type_description"
+);
 export const formPlace = content.querySelector(".form__input_type_place-name");
 export const formLink = content.querySelector(".form__input_type_place-link");

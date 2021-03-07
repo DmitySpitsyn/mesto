@@ -1,6 +1,7 @@
 import { Card } from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
 import { Section } from "../components/Section.js";
+import { Popup } from "../components/Popup.js";
 import {
     initialCards,
     validationSetting,
@@ -65,23 +66,29 @@ function openFormProfile() {
     formName.value = profiletitle.textContent;
     formdescription.value = profilesubtitle.textContent;
     profileFormValidator.checkInputValidity();
-    openPopUp(profilePopup);
+    const popUp = new Popup(profilePopup);
+    popUp.open();
+    // openPopUp(profilePopup);
 }
 
 function openFormItem() {
     formPlace.value = "";
     formLink.value = "";
     addFormValidator.checkInputValidity();
-    openPopUp(cardPopup);
+    const popUp = new Popup(cardPopup);
+    popUp.open();
+    //    openPopUp(cardPopup);
 }
 
 export function popupImage(name, link) {
-    openPopUp(previewPopup);
+    const popUp = new Popup(previewPopup);
+    popUp.open();
+    //  openPopUp(previewPopup);
     image.src = link;
     caption.textContent = name;
     image.alt = "Фото места " + name;
 }
-
+/*
 function openPopUp(popup) {
     popup.classList.add("popup_opened");
     document.addEventListener("keydown", closeByEscape);
@@ -93,7 +100,7 @@ function closePopup(popup) {
     document.removeEventListener("keydown", closeByEscape);
     popup.removeEventListener("click", closeByClick);
 }
-
+*/
 function submitFormProfile(event) {
     event.preventDefault();
     profiletitle.textContent = formName.value;
@@ -104,13 +111,15 @@ function submitFormElement(event) {
     event.preventDefault();
     oneCard.renderItems();
 }
-
-function closeByClick(evt) {
+/*
+export function closeByClick(evt) {
+    console.log(evt)
     if (
         evt.target.classList.contains("container__button-close") ||
         evt.target.classList.contains("popup") ||
         evt.target.classList.contains("form__button-submit")
     ) {
+        console.log('yess')
         closePopup(evt.target.closest(".popup"));
     }
 }
@@ -119,5 +128,4 @@ function closeByEscape(evt) {
     if (evt.key === "Escape") {
         const openedPopup = document.querySelector(".popup_opened");
         closePopup(openedPopup);
-    }
-}
+    }*/
