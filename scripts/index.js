@@ -2,6 +2,8 @@ import { Card } from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
 import { Section } from "../components/Section.js";
 import { Popup } from "../components/Popup.js";
+import { PopupWithImage } from "../components/PopupWithImage.js";
+import { PopupWithForm } from "../components/PopupWithForm.js";
 import {
     initialCards,
     validationSetting,
@@ -10,8 +12,6 @@ import {
     profilePopup,
     cardPopup,
     previewPopup,
-    image,
-    caption,
     editbutton,
     formProfile,
     formElement,
@@ -25,13 +25,26 @@ import {
 
 editbutton.addEventListener("click", openFormProfile);
 addElement.addEventListener("click", openFormItem);
-formProfile.addEventListener("submit", submitFormProfile);
-formElement.addEventListener("submit", submitFormElement);
-
+// formProfile.addEventListener("submit", submitFormProfile);
+//formElement.addEventListener("submit", submitFormElement);
+/*
+const handleCardClick = function(name, link) {
+    const popUp = new PopupWithImage(previewPopup, name, link);
+    popUp.open();
+}
+*/
 const cardList = new Section({
         items: initialCards,
         renderer: (item) => {
-            const card = new Card(item, ".section-elements");
+            const card = new Card(
+                item, {
+                    handleCardClick: (name, link) => {
+                        const popUp = new PopupWithImage(previewPopup, name, link);
+                        popUp.open();
+                    },
+                },
+                ".section-elements"
+            );
             const cardElement = card._creatCard();
             cardList.addItem(cardElement);
         },
@@ -39,18 +52,26 @@ const cardList = new Section({
     containerSelector
 );
 cardList.renderItems();
-
+/*
 const oneCard = new Section({
         items: [{ name: formPlace.value, link: formLink.value }],
         renderer: (item) => {
-            const card = new Card(item, ".section-elements");
+            const card = new Card(
+                item, {
+                    handleCardClick: (name, link) => {
+                        const popUp = new PopupWithImage(previewPopup, name, link);
+                        popUp.open();
+                    },
+                },
+                ".section-elements"
+            );
             const cardElement = card._creatCard();
             oneCard.addPrependItem(cardElement);
         },
     },
     containerSelector
 );
-
+*/
 const profileFormValidator = new FormValidator(
     validationSetting,
     ".form-profile"
@@ -66,41 +87,52 @@ function openFormProfile() {
     formName.value = profiletitle.textContent;
     formdescription.value = profilesubtitle.textContent;
     profileFormValidator.checkInputValidity();
-    const popUp = new Popup(profilePopup);
+
+    const popUp = new PopupWithForm(profilePopup, {
+        submitForm: (inputs) => {
+            profiletitle.textContent = inputs[0].value;
+            profilesubtitle.textContent = inputs[1].value;
+        }
+    });
     popUp.open();
-    // openPopUp(profilePopup);
 }
+
+let popUp = new PopupWithForm(cardPopup, {
+    submitForm: (inputs) => {
+
+        let oneCard = new Section({
+                items: [{ name: 'inputs[0].value', link: 'http:\e1.ru' }],
+                renderer: (item) => {
+                    const card = new Card(
+                        item, {
+                            handleCardClick: (name, link) => {
+                                const popUp = new PopupWithImage(previewPopup, name, link);
+                                popUp.open();
+                            },
+                        },
+                        ".section-elements"
+                    );
+                    const cardElement = card._creatCard();
+                    oneCard.addPrependItem(cardElement);
+                },
+            },
+            containerSelector
+        );
+        oneCard.renderItem();
+
+        console.log(oneCard);
+    }
+});
 
 function openFormItem() {
     formPlace.value = "";
     formLink.value = "";
     addFormValidator.checkInputValidity();
-    const popUp = new Popup(cardPopup);
-    popUp.open();
-    //    openPopUp(cardPopup);
-}
 
-export function popupImage(name, link) {
-    const popUp = new Popup(previewPopup);
     popUp.open();
-    //  openPopUp(previewPopup);
-    image.src = link;
-    caption.textContent = name;
-    image.alt = "Фото места " + name;
+    console.log(popUp);
 }
 /*
-function openPopUp(popup) {
-    popup.classList.add("popup_opened");
-    document.addEventListener("keydown", closeByEscape);
-    popup.addEventListener("click", closeByClick);
-}
-
-function closePopup(popup) {
-    popup.classList.remove("popup_opened");
-    document.removeEventListener("keydown", closeByEscape);
-    popup.removeEventListener("click", closeByClick);
-}
-*/
 function submitFormProfile(event) {
     event.preventDefault();
     profiletitle.textContent = formName.value;

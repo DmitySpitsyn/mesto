@@ -10,6 +10,14 @@ export class Popup {
     }
     close() {
         this._popupSelector.classList.remove("popup_opened");
+        this._closeEventListners();
+    }
+    _closeEventListners() {
+        document.removeEventListener("keydown", this._handleEscClose.bind(this));
+        this._popupSelector.removeEventListener(
+            "click",
+            this._closeByClick.bind(this)
+        );
     }
     _handleEscClose(evt) {
         if (evt.key === "Escape") {
@@ -19,10 +27,9 @@ export class Popup {
     _closeByClick(evt) {
         if (
             evt.target.classList.contains("container__button-close") ||
-            evt.target.classList.contains("popup") ||
-            evt.target.classList.contains("form__button-submit")
+            evt.target.classList.contains("popup")
+            //   evt.target.classList.contains("form__button-submit")
         ) {
-            console.log("yess");
             this.close();
         }
     }

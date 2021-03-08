@@ -1,10 +1,9 @@
-import { popupImage } from "../scripts/index.js";
 export class Card {
-    constructor(data, cardSelectror) {
+    constructor(data, { handleCardClick }, cardSelectror) {
         this._name = data.name;
         this._link = data.link;
+        this._handleCardClick = handleCardClick;
         this._cardSelector = cardSelectror;
-        this._data = data;
     }
     _getTemplate() {
         const _cardElement = document
@@ -21,6 +20,9 @@ export class Card {
         _elementImage.alt = "Фотография места " + this._name;
         return this._element;
     }
+    openPopup() {
+        this._handleCardClick(this._name, this._link);
+    }
     _setEventListeners() {
         this._element
             .querySelector(".element__delete-button")
@@ -30,9 +32,7 @@ export class Card {
             .addEventListener("click", this._switchLikeButton);
         this._element
             .querySelector(".element__image")
-            .addEventListener("click", (f) => {
-                popupImage(this._name, this._link);
-            });
+            .addEventListener("click", this.openPopup.bind(this));
     }
 
     _switchLikeButton(evt) {
