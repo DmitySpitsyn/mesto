@@ -1,4 +1,3 @@
-//import { closeByClick } from "../scripts/index.js";
 export class Popup {
     constructor(popupSelector) {
         this._popupSelector = popupSelector;
@@ -10,14 +9,11 @@ export class Popup {
     }
     close() {
         this._popupSelector.classList.remove("popup_opened");
-        this._closeEventListners();
+        this._removeEventListners();
     }
-    _closeEventListners() {
-        document.removeEventListener("keydown", this._handleEscClose.bind(this));
-        this._popupSelector.removeEventListener(
-            "click",
-            this._closeByClick.bind(this)
-        );
+    _removeEventListners() {
+        document.removeEventListener("keydown", this._handleEscCloseConst);
+        this._popupSelector.removeEventListener("click", this._closeByClickConst);
     }
     _handleEscClose(evt) {
         if (evt.key === "Escape") {
@@ -28,17 +24,17 @@ export class Popup {
         if (
             evt.target.classList.contains("container__button-close") ||
             evt.target.classList.contains("popup")
-            //   evt.target.classList.contains("form__button-submit")
         ) {
             this.close();
         }
     }
 
     setEventListeners() {
-        document.addEventListener("keydown", this._handleEscClose.bind(this));
-        this._popupSelector.addEventListener(
-            "click",
-            this._closeByClick.bind(this)
-        );
+
+        this._handleEscCloseConst = this._handleEscClose.bind(this);
+        document.addEventListener("keydown", this._handleEscCloseConst);
+
+        this._closeByClickConst = this._closeByClick.bind(this);
+        this._popupSelector.addEventListener("click", this._closeByClickConst);
     }
 }

@@ -10,13 +10,9 @@ export class Section {
     }
     addPrependItem(cardElement) {
         this._container.prepend(cardElement);
+    }
 
-    }
-    renderItem() {
-        this._renderer(this._renderedItems);
-    }
     renderItems() {
-        console.log(this._renderedItems);
         this._renderedItems.forEach((item) => {
             this._renderer(item);
         });

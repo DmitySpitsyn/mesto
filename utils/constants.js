@@ -37,13 +37,7 @@ export const profilePopup = content.querySelector(".popup-profile");
 export const cardPopup = content.querySelector(".popup-card-create");
 export const previewPopup = content.querySelector(".popup-preview");
 export const editbutton = content.querySelector(".profile__edit-button");
-export const formProfile = content.querySelector(".form-profile");
-export const formElement = content.querySelector(".form-add-element");
-export const profiletitle = content.querySelector(".profile__title");
-export const profilesubtitle = content.querySelector(".profile__subtitle");
 export const formName = content.querySelector(".form__input_type_name");
 export const formdescription = content.querySelector(
     ".form__input_type_description"
 );
-export const formPlace = content.querySelector(".form__input_type_place-name");
-export const formLink = content.querySelector(".form__input_type_place-link");
