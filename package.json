@@ -1,0 +1,35 @@
+{
+    "name": "mesto",
+    "version": "1.0.0",
+    "description": "Проект представляет собой одностраничный сайт",
+    "main": "index.js",
+    "scripts": {
+        "build": "rm -rf dist && webpack --mode production",
+        "dev": "webpack serve"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/DmitySpitsyn/mesto.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/DmitySpitsyn/mesto/issues"
+    },
+    "homepage": "https://github.com/DmitySpitsyn/mesto#readme",
+    "dependencies": {
+        "core-js": "^3.9.1",
+        "jquery": "^3.6.0"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.13.10",
+        "@babel/preset-env": "^7.13.10",
+        "babel-loader": "^8.2.2",
+        "clean-webpack-plugin": "^3.0.0",
+        "html-webpack-plugin": "^5.3.1",
+        "webpack": "^5.24.4",
+        "webpack-cli": "^4.5.0",
+        "webpack-dev-server": "^3.11.2"
+    }
+}
