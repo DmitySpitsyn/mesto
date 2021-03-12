@@ -15,6 +15,6 @@
 
 В 7-ой проектной работе оптимизирован код javaScript добавлены классы и созданы файлы Card.js и FornValidator.js.
 
-В 8-ой проектной работе оптимизирован код javaScript добавлены классы и созданы файлы UserInfo.js, Section.js, Popup.js, PopupWithForm.js, PopupWithImage.js
+В 8-ой проектной работе оптимизирован код javaScript добавлены классы и созданы файлы UserInfo.js, Section.js, Popup.js, PopupWithForm.js, PopupWithImage.js. Также собран webpack.
 
 Данный проект выложен по адресу: https://dmityspitsyn.github.io/mesto/index.html
