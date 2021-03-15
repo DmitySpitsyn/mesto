@@ -30,12 +30,16 @@ export const validationSetting = {
     inputErrorClass: "form__input_type_error",
     errorClass: "form__input-error_active",
 };
+export const userSelectors = {
+    name: ".profile__title",
+    profile: ".profile__subtitle"
+};
 export const content = document.querySelector(".content");
 export const containerSelector = ".elements";
 export const addElement = document.querySelector(".profile__add-button");
-export const profilePopup = content.querySelector(".popup-profile");
-export const cardPopup = content.querySelector(".popup-card-create");
-export const previewPopup = content.querySelector(".popup-preview");
+export const profilePopup = ".popup-profile";
+export const cardPopup = ".popup-card-create";
+export const previewPopup = ".popup-preview";
 export const editbutton = content.querySelector(".profile__edit-button");
 export const formName = content.querySelector(".form__input_type_name");
 export const formdescription = content.querySelector(

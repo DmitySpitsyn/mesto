@@ -16,26 +16,32 @@ import {
     editbutton,
     formName,
     formdescription,
+    userSelectors
 } from "../utils/constants.js";
+import { isPlainObject } from 'jquery';
 
 editbutton.addEventListener("click", openFormProfile);
 addElement.addEventListener("click", openFormItem);
+
+const popupWithImage = new PopupWithImage(previewPopup);
+popupWithImage.setEventListeners();
+
+function handleCardClick(name, link) {
+    popupWithImage.open(name, link);
+};
 
 const cardList = new Section({
         items: initialCards,
         renderer: (item) => {
             const card = new Card(
                 item, {
-                    handleCardClick: (name, link) => {
-                        const popUp = new PopupWithImage(previewPopup, name, link);
-                        popUp.open();
-                    },
+                    handleCardClick
                 },
                 ".section-elements"
             );
             const cardElement = card._creatCard();
             cardList.addItem(cardElement);
-        },
+        }
     },
     containerSelector
 );
@@ -52,46 +58,50 @@ const addFormValidator = new FormValidator(
 );
 addFormValidator.enableValidation();
 
+const userinfo = new UserInfo(userSelectors);
+
+const popUpFormProfile = new PopupWithForm(profilePopup, {
+    submitForm: (inputs) => {
+        userinfo.setUserInfo(inputs.profilename, inputs.profiledescription);
+    },
+});
+
 function openFormProfile() {
-    const userinfo = new UserInfo();
     const userprofile = userinfo.getUserInfo();
     formName.value = userprofile[0];
     formdescription.value = userprofile[1];
-    profileFormValidator.checkInputValidity();
+    profileFormValidator.toggleButtonState();
+    popUpFormProfile.open();
 
-    const popUp = new PopupWithForm(profilePopup, {
-        submitForm: (inputs) => {
-            const userinfo = new UserInfo(inputs[0].value, inputs[1].value);
-            userinfo.setUserInfo();
-        },
-    });
-    popUp.open();
 }
+
+popUpFormProfile.setEventListeners();
+
+
+const popUpFormItem = new PopupWithForm(cardPopup, {
+    submitForm: (inputs) => {
+        const oneCard = new Section({
+                items: [{ name: inputs.placename, link: inputs.placelink }],
+                renderer: (item) => {
+                    const card = new Card(
+                        item, {
+                            handleCardClick
+                        },
+                        ".section-elements"
+                    );
+                    const cardElement = card._creatCard();
+                    cardList.addPrependItem(cardElement);
+                }
+            },
+            containerSelector
+        );
+        oneCard.renderItems();
+    },
+});
 
 function openFormItem() {
-    addFormValidator.checkInputValidity();
-    let popUp = new PopupWithForm(cardPopup, {
-        submitForm: (inputs) => {
-            let oneCard = new Section({
-                    items: [{ name: inputs[0].value, link: inputs[1].value }],
-                    renderer: (item) => {
-                        const card = new Card(
-                            item, {
-                                handleCardClick: (name, link) => {
-                                    const popUp = new PopupWithImage(previewPopup, name, link);
-                                    popUp.open();
-                                },
-                            },
-                            ".section-elements"
-                        );
-                        const cardElement = card._creatCard();
-                        oneCard.addPrependItem(cardElement);
-                    },
-                },
-                containerSelector
-            );
-            oneCard.renderItems();
-        },
-    });
-    popUp.open();
+    addFormValidator.toggleButtonState();
+    popUpFormItem.open();
 }
+
+popUpFormItem.setEventListeners();

@@ -13,13 +13,13 @@ export class FormValidator {
     enableValidation() {
         this._inputs.forEach((_input) => {
             _input.addEventListener("input", (f) => {
-                this.checkInputValidity();
+                this._checkInputValidity();
             });
         });
     }
 
-    checkInputValidity() {
-        this._toggleButtonState();
+    _checkInputValidity() {
+        this.toggleButtonState();
         this._inputs.forEach((_input) => {
             const _errorElement = this._form.querySelector(`.${_input.id}-error`);
             if (!_input.validity.valid) {
@@ -38,7 +38,7 @@ export class FormValidator {
         _buttonElement.classList.add(this._inactiveButtonClass);
         _buttonElement.disabled = true;
     }
-    _toggleButtonState() {
+    toggleButtonState() {
         const _buttonElement = this._form.querySelector(this._submitButtonSelector);
         if (this._hasInvalidInput(this._inputs)) {
             this._disableButtonSubmit(_buttonElement);

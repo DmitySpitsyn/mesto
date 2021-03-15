@@ -3,6 +3,7 @@ export class Section {
         this._renderedItems = items;
         this._renderer = renderer;
         this._container = document.querySelector(containerSelector);
+
     }
 
     addItem(cardElement) {
@@ -15,6 +16,7 @@ export class Section {
     renderItems() {
         this._renderedItems.forEach((item) => {
             this._renderer(item);
+
         });
     }
 }
