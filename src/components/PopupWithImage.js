@@ -9,15 +9,10 @@ export class PopupWithImage extends Popup {
     }
     open(name, link) {
         super.open();
-        //        const _image = document.querySelector(".container__image");
         this._image.src = link;
-        //    document.querySelector(".container__caption").textContent = this._name;
         this._image.alt = "Фото места " + name;
-        //     _image.alt = "Фото места " + this._name;
         this._caption.textContent = name;
 
     }
-    setEventListeners() {
-        super.setEventListeners();
-    }
+
 }

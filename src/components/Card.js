@@ -11,18 +11,16 @@ export class Card {
             .content.cloneNode(true);
         return _cardElement;
     }
-    _creatCard() {
-            this._element = this._getTemplate();
-            this._setEventListeners();
-            this._element.querySelector(".element__title").textContent = this._name;
-            const _elementImage = this._element.querySelector(".element__image");
-            _elementImage.src = this._link;
-            _elementImage.alt = "Фотография места " + this._name;
-            return this._element;
-        }
-        //    openPopup() {
-        //       this._handleCardClick(this._name, this._link);
-        //  }
+    createCard() {
+        this._element = this._getTemplate();
+        this._setEventListeners();
+        this._element.querySelector(".element__title").textContent = this._name;
+        const _elementImage = this._element.querySelector(".element__image");
+        _elementImage.src = this._link;
+        _elementImage.alt = "Фотография места " + this._name;
+        return this._element;
+    }
+
     _setEventListeners() {
         this._element
             .querySelector(".element__delete-button")

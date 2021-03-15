@@ -39,7 +39,7 @@ const cardList = new Section({
                 },
                 ".section-elements"
             );
-            const cardElement = card._creatCard();
+            const cardElement = card.createCard();
             cardList.addItem(cardElement);
         }
     },
@@ -70,37 +70,25 @@ function openFormProfile() {
     const userprofile = userinfo.getUserInfo();
     formName.value = userprofile[0];
     formdescription.value = userprofile[1];
-    profileFormValidator.toggleButtonState();
     popUpFormProfile.open();
 
 }
 
 popUpFormProfile.setEventListeners();
 
-
 const popUpFormItem = new PopupWithForm(cardPopup, {
     submitForm: (inputs) => {
-        const oneCard = new Section({
-                items: [{ name: inputs.placename, link: inputs.placelink }],
-                renderer: (item) => {
-                    const card = new Card(
-                        item, {
-                            handleCardClick
-                        },
-                        ".section-elements"
-                    );
-                    const cardElement = card._creatCard();
-                    cardList.addPrependItem(cardElement);
-                }
-            },
-            containerSelector
+        const item = { name: inputs.placename, link: inputs.placelink };
+        const card = new Card(
+            item, { handleCardClick },
+            ".section-elements"
         );
-        oneCard.renderItems();
+        const cardElement = card.createCard();
+        cardList.addPrependItem(cardElement);
     },
 });
 
 function openFormItem() {
-    addFormValidator.toggleButtonState();
     popUpFormItem.open();
 }
 
