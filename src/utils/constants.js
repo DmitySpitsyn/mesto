@@ -32,7 +32,8 @@ export const validationSetting = {
 };
 export const userSelectors = {
     name: ".profile__title",
-    profile: ".profile__subtitle"
+    profile: ".profile__subtitle",
+    avatar: ".profile__image"
 };
 export const content = document.querySelector(".content");
 export const containerSelector = ".elements";

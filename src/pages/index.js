@@ -5,6 +5,7 @@ import { Section } from "../components/Section.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
 import { UserInfo } from "../components/UserInfo.js";
+import { Api } from "../components/Api.js";
 import {
     initialCards,
     validationSetting,
@@ -23,6 +24,9 @@ import { isPlainObject } from 'jquery';
 editbutton.addEventListener("click", openFormProfile);
 addElement.addEventListener("click", openFormItem);
 
+const userinfo = new UserInfo(userSelectors);
+
+
 const popupWithImage = new PopupWithImage(previewPopup);
 popupWithImage.setEventListeners();
 
@@ -31,7 +35,7 @@ function handleCardClick(name, link) {
 };
 
 const cardList = new Section({
-        items: initialCards,
+        //   items: initialCards,
         renderer: (item) => {
             const card = new Card(
                 item, {
@@ -45,7 +49,7 @@ const cardList = new Section({
     },
     containerSelector
 );
-cardList.renderItems();
+
 
 const profileFormValidator = new FormValidator(
     validationSetting,
@@ -57,8 +61,6 @@ const addFormValidator = new FormValidator(
     ".form-add-element"
 );
 addFormValidator.enableValidation();
-
-const userinfo = new UserInfo(userSelectors);
 
 const popUpFormProfile = new PopupWithForm(profilePopup, {
     submitForm: (inputs) => {
@@ -93,3 +95,23 @@ function openFormItem() {
 }
 
 popUpFormItem.setEventListeners();
+
+const api = new Api({
+    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-21',
+    headers: {
+        authorization: '7c009fa5-838d-4eed-9e1c-8223a7c4bd46',
+        'Content-Type': 'application/json'
+    }
+}, {
+    setUser: (data) => {
+        userinfo.setUserInfo(data.name, data.about, data.avatar);
+    },
+
+}, {
+    setCards: (data) => {
+        cardList.renderItems(data);
+    }
+});
+
+api.getUser();
+api.getInitialCards();
