@@ -17,10 +17,22 @@ export class Api {
                     avatar: res.avatar
                 };
                 this.setUser(data);
-
             });
+    }
+
+    editUser(name, about) {
+        fetch(this.options.baseUrl + '/users/me', {
+            method: 'PATCH',
+            headers: this.options.headers,
+            body: JSON.stringify({
+                name: name,
+                about: about
+            })
+        }).then(() => this.getUser())
 
     }
+
+
     getInitialCards() {
         fetch(this.options.baseUrl + '/cards', {
                 headers: this.options.headers
