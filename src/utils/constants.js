@@ -23,6 +23,15 @@ export const initialCards = [{
         link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
     },
 ];
+
+export const options = {
+    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-21',
+    headers: {
+        authorization: '7c009fa5-838d-4eed-9e1c-8223a7c4bd46',
+        'Content-Type': 'application/json'
+    }
+}
+
 export const validationSetting = {
     inputSelector: ".form__input",
     submitButtonSelector: ".form__button-submit",
@@ -41,6 +50,7 @@ export const addElement = document.querySelector(".profile__add-button");
 export const profilePopup = ".popup-profile";
 export const cardPopup = ".popup-card-create";
 export const previewPopup = ".popup-preview";
+export const confirmPopup = ".confirm-popup";
 export const editbutton = content.querySelector(".profile__edit-button");
 export const formName = content.querySelector(".form__input_type_name");
 export const formdescription = content.querySelector(

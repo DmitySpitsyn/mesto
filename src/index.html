@@ -58,6 +58,13 @@
                     </form>
                 </div>
             </section>
+            <section class="popup confirm-popup">
+                <div class="container">
+                    <button type="button" class="container__button-close popup-preview__button-close"></button>
+                    <h2 class="container__title">Вы уверены?</h2>
+                    <button type="button" class="form__button-submit">Да</button>
+                </div>
+            </section>
             <section class="template-elements">
                 <ul class="elements"></ul>
                 <template class="section-elements">
@@ -66,7 +73,10 @@
                         <img class="element__image" alt="Фотография места" src="#">
                         <div class="element__title-area">
                             <h2 class="element__title"></h2>
+                            <div class="element__like-area">
                             <button type="button" class="element__like-button"></button>
+                            <span class="element__counter-like">0</span>
+                            </div>
                         </div>
                     </li>
                 </template>

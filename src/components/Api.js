@@ -1,44 +1,65 @@
 export class Api {
-    constructor(options, { setUser }, { setCards }) {
+    constructor(options) {
         this.options = options;
-        this.setUser = setUser;
-        this.setCards = setCards;
 
     }
     getUser() {
+        return fetch(this.options.baseUrl + '/users/me', {
+            headers: this.options.headers
+        }).then(res => {
+            if (res.ok) {
+                return res.json();
+            }
+            return Promise.reject(new Error('Произошла ошибка с кодом ', res.status));
+        })
+    };
 
-        fetch(this.options.baseUrl + '/users/me', {
-                headers: this.options.headers
-            }).then(res => res.json())
-            .then((res) => {
-                const data = {
-                    name: res.name,
-                    about: res.about,
-                    avatar: res.avatar
-                };
-                this.setUser(data);
-            });
-    }
+
 
     editUser(name, about) {
-        fetch(this.options.baseUrl + '/users/me', {
+        return fetch(this.options.baseUrl + '/users/me', {
             method: 'PATCH',
             headers: this.options.headers,
             body: JSON.stringify({
                 name: name,
                 about: about
             })
-        }).then(() => this.getUser())
-
+        }).then(res => {
+            if (res.ok) {
+                return res.json();
+            }
+            return Promise.reject(new Error('Произошла ошибка с кодом ', res.status));
+        }).catch(err => Promise.reject(err))
     }
 
 
     getInitialCards() {
-        fetch(this.options.baseUrl + '/cards', {
-                headers: this.options.headers
-            }).then(res => res.json())
-            .then((data) => {
-                this.setCards(data);
-            })
+        return fetch(this.options.baseUrl + '/cards', {
+            headers: this.options.headers
+        }).then(res => {
+            if (res.ok) {
+                return res.json();
+            }
+            return Promise.reject(new Error('Произошла ошибка с кодом ', res.status));
+        }).catch(err => Promise.reject(err))
     }
+
+    addCard(item) {
+
+        return fetch(this.options.baseUrl + '/cards', {
+            method: 'POST',
+            headers: this.options.headers,
+            body: JSON.stringify({
+                name: item.name,
+                link: item.link
+            })
+        }).then(res => {
+            if (res.ok) {
+                return res.json();
+            }
+            return Promise.reject(new Error('Произошла ошибка с кодом ', res.status));
+        }).catch(err => Promise.reject(err))
+    }
+
+
 }
