@@ -5,6 +5,7 @@ import { Section } from "../components/Section.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
 import { UserInfo } from "../components/UserInfo.js";
+import { PopupWithConfirm } from "../components/PopupWithConfirm.js";
 import { Api } from "../components/Api.js";
 import {
     initialCards,
@@ -14,32 +15,27 @@ import {
     profilePopup,
     cardPopup,
     previewPopup,
+    confirmPopup,
     editbutton,
     formName,
     formdescription,
-    userSelectors
+    userSelectors,
+    options
 } from "../utils/constants.js";
-import { isPlainObject } from 'jquery';
+
 
 editbutton.addEventListener("click", openFormProfile);
 addElement.addEventListener("click", openFormItem);
 
 const userinfo = new UserInfo(userSelectors);
 
-
-const popupWithImage = new PopupWithImage(previewPopup);
-popupWithImage.setEventListeners();
-
-function handleCardClick(name, link) {
-    popupWithImage.open(name, link);
-};
-
 const cardList = new Section({
         //   items: initialCards,
         renderer: (item) => {
             const card = new Card(
                 item, {
-                    handleCardClick
+                    handleCardClick,
+                    confirmDeleteCard
                 },
                 ".section-elements"
             );
@@ -49,6 +45,33 @@ const cardList = new Section({
     },
     containerSelector
 );
+
+const popupConfirm = new PopupWithConfirm(confirmPopup);
+
+const api = new Api(options)
+
+api.getUser().then(data => {
+    userinfo.setUserInfo(data.name, data.about, data.avatar);
+});
+
+api.getInitialCards().then(data => {
+    cardList.renderItems(data);
+})
+
+
+const popupWithImage = new PopupWithImage(previewPopup);
+popupWithImage.setEventListeners();
+
+function handleCardClick(name, link) {
+    popupWithImage.open(name, link);
+};
+
+function confirmDeleteCard() {
+    popupConfirm.open();
+    popupConfirm.setEventListeners();
+}
+
+
 
 
 const profileFormValidator = new FormValidator(
@@ -64,7 +87,9 @@ addFormValidator.enableValidation();
 
 const popUpFormProfile = new PopupWithForm(profilePopup, {
     submitForm: (inputs) => {
-        userinfo.setUserInfo(inputs.profilename, inputs.profiledescription);
+        api.editUser(inputs.profilename, inputs.profiledescription).then(data => {
+            userinfo.setUserInfo(data.name, data.about, data.avatar);
+        })
     },
 });
 
@@ -73,20 +98,20 @@ function openFormProfile() {
     formName.value = userprofile[0];
     formdescription.value = userprofile[1];
     popUpFormProfile.open();
-
 }
 
 popUpFormProfile.setEventListeners();
 
 const popUpFormItem = new PopupWithForm(cardPopup, {
     submitForm: (inputs) => {
-        const item = { name: inputs.placename, link: inputs.placelink };
-        const card = new Card(
-            item, { handleCardClick },
-            ".section-elements"
-        );
-        const cardElement = card.createCard();
-        cardList.addPrependItem(cardElement);
+        api.addCard({ name: inputs.placename, link: inputs.placelink }).then(data => {
+            const card = new Card(
+                data, { handleCardClick },
+                ".section-elements"
+            );
+            const cardElement = card.createCard();
+            cardList.addPrependItem(cardElement);
+        })
     },
 });
 
@@ -95,23 +120,3 @@ function openFormItem() {
 }
 
 popUpFormItem.setEventListeners();
-
-const api = new Api({
-    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-21',
-    headers: {
-        authorization: '7c009fa5-838d-4eed-9e1c-8223a7c4bd46',
-        'Content-Type': 'application/json'
-    }
-}, {
-    setUser: (data) => {
-        userinfo.setUserInfo(data.name, data.about, data.avatar);
-    },
-
-}, {
-    setCards: (data) => {
-        cardList.renderItems(data);
-    }
-});
-
-api.getUser();
-api.getInitialCards();
