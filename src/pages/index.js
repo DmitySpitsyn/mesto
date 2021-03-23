@@ -67,10 +67,9 @@ function handleCardClick(name, link) {
     popupWithImage.open(name, link);
 };
 
-function confirmDeleteCard(evt) {
+function confirmDeleteCard() {
     popupConfirm.open();
     popupConfirm.setEventListeners();
-    console.log(evt)
 }
 
 

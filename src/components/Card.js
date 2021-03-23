@@ -47,13 +47,9 @@ export class Card {
             .classList.toggle("element__like-button_active");
     }
 
-    confirmDelete(evt) {
-        console.log(evt)
-        evt.target.closest(".element").remove();
-    }
 
     _deleteCard(evt) {
-        console.log(this)
+
         this.confirmDeleteCard(evt);
 
 
