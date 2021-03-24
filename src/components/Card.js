@@ -1,22 +1,50 @@
+import { userSelectors } from "../utils/constants";
+
 export class Card {
-    constructor(data, { handleCardClick, confirmDeleteCard }, cardSelectror) {
+    constructor(data, { userinfo, confirmDeleteCard, api }, { handleCardClick }, cardSelectror) {
         this._name = data.name;
         this._link = data.link;
         this._handleCardClick = handleCardClick;
         this._cardSelector = cardSelectror;
         this.likes = data.likes;
-        this.confirmDeleteCard = confirmDeleteCard.bind(this);
+        this.name = data.owner.name;
+        this.about = data.owner.about;
+        this.confirmDeleteCard = confirmDeleteCard;
+        this.userinfo = userinfo;
+        this.cardId = data._id;
+        this.api = api;
+        this.username = this.userinfo.getUserInfo();
 
     }
+
     _getTemplate() {
         const _cardElement = document
             .querySelector(this._cardSelector)
             .content.cloneNode(true);
         return _cardElement;
     }
+
+    _deleteButtonStatus() {
+
+        if (this.username[0] === this.name && this.username[1] === this.about) {
+            const button = this._element.querySelector(".element__delete-button");
+            button.classList.add('element__delete-button_active');
+            button.id = this.cardId;
+        }
+
+    }
+
+    _likeButtonStatus() {
+        this.likes.forEach(item => {
+            if (item.name === this.username[0] && item.about === this.username[1]) {
+                this._element.querySelector(".element__like-button").classList.add("element__like-button_active");
+            }
+        });
+    }
     createCard() {
-        console.log(this.likes)
         this._element = this._getTemplate();
+        this._deleteButtonStatus();
+        this._likeButtonStatus();
         this._setEventListeners();
         this._element.querySelector(".element__title").textContent = this._name;
         const _elementImage = this._element.querySelector(".element__image");
@@ -24,6 +52,7 @@ export class Card {
         _elementImage.alt = "Фотография места " + this._name;
         const _likeCounter = this._element.querySelector(".element__counter-like");
         _likeCounter.textContent = this.likes.length;
+        _likeCounter.id = this.cardId;
 
         return this._element;
     }
@@ -31,10 +60,10 @@ export class Card {
     _setEventListeners() {
         this._element
             .querySelector(".element__delete-button")
-            .addEventListener("click", this._deleteCard.bind(this));
+            .addEventListener("click", this._confirmDelete.bind(this));
         this._element
             .querySelector(".element__like-button")
-            .addEventListener("click", this._switchLikeButton);
+            .addEventListener("click", this._switchLikeButton.bind(this));
         this._element
             .querySelector(".element__image")
             .addEventListener("click", () => {
@@ -43,19 +72,28 @@ export class Card {
     }
     _switchLikeButton(evt) {
         evt.target
-            .closest(".element__like-button")
             .classList.toggle("element__like-button_active");
+        const _likeCounter = evt.target.closest(".element").querySelector(".element__counter-like");
+        let counter = Number(_likeCounter.textContent);
+        if (evt.target.classList.contains("element__like-button_active")) {
+            this.api.addLike(_likeCounter.id).then(() => {
+                counter += 1;
+                _likeCounter.textContent = counter;
+            })
+
+        } else {
+            this.api.deleteLike(_likeCounter.id).then(() => {
+                counter -= 1;
+                _likeCounter.textContent = counter;
+            });
+        }
     }
 
 
-    _deleteCard(evt) {
-
-        this.confirmDeleteCard(evt);
-
-
+    _confirmDelete(evt) {
+        const cardId = evt.target.id;
+        const element = evt.target;
+        this.confirmDeleteCard(cardId, element);
     }
-
-
-
 
 }

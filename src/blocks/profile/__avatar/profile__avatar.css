@@ -1,9 +1,44 @@
     .profile__avatar {
+        position: relative;
         display: flex;
         margin-left: -23px;
         width: 168px;
         grid-row-start: 1;
         grid-row-end: 3;
+    }
+    
+    .profile__avatar::before {
+        content: ' ';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+        background-color: rgb(0, 0, 0, 0.8);
+        opacity: 0;
+        transition: opacity 350ms ease;
+    }
+    
+    .profile__avatar:hover::before {
+        opacity: 0.8;
+    }
+    
+    .profile__avatar:hover .profile__avatar-button {
+        display: block;
+        position: absolute;
+        z-index: 2;
+        top: 47px;
+        right: 65px;
+        width: 26px;
+        height: 26px;
+        background-image: url(../../../images/edit-button-avatar.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        border: none;
+        background-color: transparent;
+        outline: 0;
+        cursor: pointer;
     }
     
     @media screen and (max-width:680px) {

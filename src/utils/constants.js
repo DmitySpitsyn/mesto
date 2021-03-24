@@ -27,7 +27,7 @@ export const initialCards = [{
 export const options = {
     baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-21',
     headers: {
-        authorization: '7c009fa5-838d-4eed-9e1c-8223a7c4bd46',
+        authorization: '0580f149-23a8-48c1-89e6-809604281955',
         'Content-Type': 'application/json'
     }
 }
@@ -47,7 +47,9 @@ export const userSelectors = {
 export const content = document.querySelector(".content");
 export const containerSelector = ".elements";
 export const addElement = document.querySelector(".profile__add-button");
+export const avatarButton = document.querySelector(".profile__avatar-button");
 export const profilePopup = ".popup-profile";
+export const avatarPopup = ".popup-update-avatar";
 export const cardPopup = ".popup-card-create";
 export const previewPopup = ".popup-preview";
 export const confirmPopup = ".confirm-popup";

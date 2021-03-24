@@ -19,6 +19,7 @@
             <section class="profile">
                 <div class="profile__avatar">
                     <img class="profile__image" alt="Кусто" src="./images/custo.jpg">
+                    <button type="button" class="profile__avatar-button"></button>
                 </div>
                 <h1 class="profile__title">Жак-Ив Кусто</h1>
                 <h2 class="profile__subtitle">Исследователь океана</h2>
@@ -61,8 +62,19 @@
             <section class="popup confirm-popup">
                 <div class="container">
                     <button type="button" class="container__button-close popup-preview__button-close"></button>
-                    <h2 class="container__title">Вы уверены?</h2>
+                    <h2 class="container__title container__title_type_confirm">Вы уверены?</h2>
                     <button type="button" class="form__button-submit">Да</button>
+                </div>
+            </section>
+            <section class="popup popup-update-avatar">
+                <div class="container">
+                    <button type="button" class="container__button-close popup-profile__button-close"></button>
+                    <h2 class="container__title">Обновить аватар</h2>
+                    <form class="form form-avatar" novalidate name="form-avatar">
+                        <input type="url" name="avatarlink" id="avatar-link" required class="form__input form__input_type_avatar-link" placeholder='Ссылка на аватар'>
+                        <span class="form__input-error avatar-link-error"></span>
+                        <button type="submit" disabled class="form__button-submit form-avatar__button-submit form__button-submit_inactive">Сохранить</button>
+                    </form>
                 </div>
             </section>
             <section class="template-elements">

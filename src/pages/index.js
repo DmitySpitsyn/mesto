@@ -13,30 +13,33 @@ import {
     containerSelector,
     addElement,
     profilePopup,
+    avatarPopup,
     cardPopup,
     previewPopup,
     confirmPopup,
     editbutton,
+    avatarButton,
     formName,
     formdescription,
     userSelectors,
     options
 } from "../utils/constants.js";
-import { isPlainObject } from 'jquery';
-import { compilation } from 'webpack';
 
 editbutton.addEventListener("click", openFormProfile);
 addElement.addEventListener("click", openFormItem);
+avatarButton.addEventListener("click", openFormAvatar);
 
 const userinfo = new UserInfo(userSelectors);
+
+const api = new Api(options)
 
 const cardList = new Section({
         //   items: initialCards,
         renderer: (item) => {
+            console.log(item)
             const card = new Card(
-                item, {
-                    handleCardClick,
-                    confirmDeleteCard
+                item, { userinfo, confirmDeleteCard, api }, {
+                    handleCardClick
                 },
                 ".section-elements"
             );
@@ -47,9 +50,10 @@ const cardList = new Section({
     containerSelector
 );
 
-const popupConfirm = new PopupWithConfirm(confirmPopup);
 
-const api = new Api(options)
+
+
+const popupConfirm = new PopupWithConfirm(confirmPopup, { deleteCard });
 
 api.getUser().then(data => {
     userinfo.setUserInfo(data.name, data.about, data.avatar);
@@ -67,13 +71,15 @@ function handleCardClick(name, link) {
     popupWithImage.open(name, link);
 };
 
-function confirmDeleteCard() {
-    popupConfirm.open();
-    popupConfirm.setEventListeners();
+
+function confirmDeleteCard(cardId, element) {
+    popupConfirm.open(cardId, element);
+
 }
 
-
-
+function deleteCard(cardId, element) {
+    api.deleteCard(cardId).then(() => element.closest(".element").remove());
+}
 
 const profileFormValidator = new FormValidator(
     validationSetting,
@@ -85,6 +91,12 @@ const addFormValidator = new FormValidator(
     ".form-add-element"
 );
 addFormValidator.enableValidation();
+
+const avatarFormValidator = new FormValidator(
+    validationSetting,
+    ".form-avatar"
+);
+avatarFormValidator.enableValidation();
 
 const popUpFormProfile = new PopupWithForm(profilePopup, {
     submitForm: (inputs) => {
@@ -101,13 +113,30 @@ function openFormProfile() {
     popUpFormProfile.open();
 }
 
+const popUpFormAvatar = new PopupWithForm(avatarPopup, {
+    submitForm: (inputs) => {
+        console.log(inputs);
+        api.editAvatar(inputs).then(data => {
+            console.log(data.avatar)
+            userinfo.setUserInfo(data.name, data.about, data.avatar);
+        })
+    },
+});
+
+popUpFormAvatar.setEventListeners();
+
+function openFormAvatar() {
+
+    popUpFormAvatar.open();
+}
+
 popUpFormProfile.setEventListeners();
 
 const popUpFormItem = new PopupWithForm(cardPopup, {
     submitForm: (inputs) => {
         api.addCard({ name: inputs.placename, link: inputs.placelink }).then(data => {
             const card = new Card(
-                data, { handleCardClick },
+                data, { userinfo, confirmDeleteCard, api }, { handleCardClick },
                 ".section-elements"
             );
             const cardElement = card.createCard();
