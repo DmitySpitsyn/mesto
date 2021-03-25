@@ -17,4 +17,6 @@
 
 В 8-ой проектной работе оптимизирован код javaScript добавлены классы и созданы файлы UserInfo.js, Section.js, Popup.js, PopupWithForm.js, PopupWithImage.js. Также собран webpack.
 
+в 9-ой проектной работе добавлена работа с Api.
+
 Данный проект выложен по адресу: https://dmityspitsyn.github.io/mesto/index.html

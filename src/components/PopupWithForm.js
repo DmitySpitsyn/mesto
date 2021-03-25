@@ -18,8 +18,7 @@ export class PopupWithForm extends Popup {
         event.preventDefault();
         const _inputs = this._getInputValues();
         this._submitForm(_inputs);
-        // this._loading();
-        //  this.close();
+
     }
 
     loading() {

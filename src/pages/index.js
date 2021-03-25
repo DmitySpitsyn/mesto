@@ -32,12 +32,20 @@ const userinfo = new UserInfo(userSelectors);
 
 const api = new Api(options)
 
+let username = '';
+
+api.getUser().then(data => {
+    userinfo.setUserInfo(data.name, data.about, data.avatar);
+    username = data;
+});
+console.log(username)
+    // const username = userinfo.getUserInfo();
+
 const cardList = new Section({
-        //   items: initialCards,
         renderer: (item) => {
-            console.log(item)
+
             const card = new Card(
-                item, { userinfo, confirmDeleteCard, checkLike }, {
+                item, username, { confirmDeleteCard, checkLike }, {
                     handleCardClick
                 },
                 ".section-elements"
@@ -58,10 +66,6 @@ const popupConfirm = new PopupWithForm(confirmPopup, {
 });
 
 
-api.getUser().then(data => {
-    userinfo.setUserInfo(data.name, data.about, data.avatar);
-});
-
 api.getInitialCards().then(data => {
     cardList.renderItems(data);
 })
@@ -75,7 +79,7 @@ function handleCardClick(name, link) {
 };
 
 
-function confirmDeleteCard(cardId, element) {
+function confirmDeleteCard(cardId) {
     deleteCardId.value = cardId;
     popupConfirm.open();
 }
@@ -158,7 +162,7 @@ const popUpFormItem = new PopupWithForm(cardPopup, {
         popUpFormItem.loading();
         api.addCard({ name: inputs.placename, link: inputs.placelink }).then(data => {
             const card = new Card(
-                data, { userinfo, confirmDeleteCard, checkLike }, { handleCardClick },
+                data, username, { confirmDeleteCard, checkLike }, { handleCardClick },
                 ".section-elements"
             );
             const cardElement = card.createCard();

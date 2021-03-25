@@ -1,11 +1,11 @@
 export class Api {
     constructor(options) {
-        this.options = options;
+        this._options = options;
 
     }
     getUser() {
-        return fetch(this.options.baseUrl + '/users/me', {
-            headers: this.options.headers
+        return fetch(this._options.baseUrl + '/users/me', {
+            headers: this._options.headers
         }).then(res => {
             if (res.ok) {
                 return res.json();
@@ -17,9 +17,9 @@ export class Api {
 
 
     editUser(name, about) {
-        return fetch(this.options.baseUrl + '/users/me', {
+        return fetch(this._options.baseUrl + '/users/me', {
             method: 'PATCH',
-            headers: this.options.headers,
+            headers: this._options.headers,
             body: JSON.stringify({
                 name: name,
                 about: about
@@ -33,10 +33,9 @@ export class Api {
     }
 
     editAvatar(data) {
-        console.log(data.avatarlink)
-        return fetch(this.options.baseUrl + '/users/me/avatar', {
+        return fetch(this._options.baseUrl + '/users/me/avatar', {
             method: 'PATCH',
-            headers: this.options.headers,
+            headers: this._options.headers,
             body: JSON.stringify({
                 avatar: data.avatarlink,
             })
@@ -50,8 +49,8 @@ export class Api {
 
 
     getInitialCards() {
-        return fetch(this.options.baseUrl + '/cards', {
-            headers: this.options.headers
+        return fetch(this._options.baseUrl + '/cards', {
+            headers: this._options.headers
         }).then(res => {
             if (res.ok) {
                 return res.json();
@@ -62,9 +61,9 @@ export class Api {
 
     addCard(item) {
 
-        return fetch(this.options.baseUrl + '/cards', {
+        return fetch(this._options.baseUrl + '/cards', {
             method: 'POST',
-            headers: this.options.headers,
+            headers: this._options.headers,
             body: JSON.stringify({
                 name: item.name,
                 link: item.link
@@ -77,9 +76,9 @@ export class Api {
         }).catch(err => Promise.reject(err))
     }
     deleteCard(cardId) {
-        return fetch(this.options.baseUrl + '/cards/' + cardId, {
+        return fetch(this._options.baseUrl + '/cards/' + cardId, {
             method: 'DELETE',
-            headers: this.options.headers,
+            headers: this._options.headers,
         }).then(res => {
             if (res.ok) {
                 return res.json();
@@ -89,9 +88,9 @@ export class Api {
     }
 
     addLike(cardId) {
-        return fetch(this.options.baseUrl + '/cards/likes/' + cardId, {
+        return fetch(this._options.baseUrl + '/cards/likes/' + cardId, {
             method: 'PUT',
-            headers: this.options.headers,
+            headers: this._options.headers,
         }).then(res => {
             if (res.ok) {
                 return res.json();
@@ -101,9 +100,9 @@ export class Api {
     }
 
     deleteLike(cardId) {
-        return fetch(this.options.baseUrl + '/cards/likes/' + cardId, {
+        return fetch(this._options.baseUrl + '/cards/likes/' + cardId, {
             method: 'DELETE',
-            headers: this.options.headers,
+            headers: this._options.headers,
         }).then(res => {
             if (res.ok) {
                 return res.json();
