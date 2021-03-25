@@ -29,6 +29,7 @@
 @import url(../blocks/form/__input-error/form__inpus-error.css);
 @import url(../blocks/form/__input-error/_active/form__input-error_active.css);
 @import url(../blocks/form/__input/_type_error/form__input_type_error.css);
+@import url(../blocks/form/__input/_type_hidden/form__input_type_hidden.css);
 @import url(../blocks/form/__button-submit/_inactive/form__button-submit_inactive.css);
 @import url(../blocks/elements/elements.css);
 @import url(../blocks/element/element.css);

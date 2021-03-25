@@ -1,7 +1,7 @@
 import { userSelectors } from "../utils/constants";
 
 export class Card {
-    constructor(data, { userinfo, confirmDeleteCard, api }, { handleCardClick }, cardSelectror) {
+    constructor(data, { userinfo, confirmDeleteCard, checkLike }, { handleCardClick }, cardSelectror) {
         this._name = data.name;
         this._link = data.link;
         this._handleCardClick = handleCardClick;
@@ -12,7 +12,7 @@ export class Card {
         this.confirmDeleteCard = confirmDeleteCard;
         this.userinfo = userinfo;
         this.cardId = data._id;
-        this.api = api;
+        this.checkLike = checkLike;
         this.username = this.userinfo.getUserInfo();
 
     }
@@ -73,20 +73,9 @@ export class Card {
     _switchLikeButton(evt) {
         evt.target
             .classList.toggle("element__like-button_active");
-        const _likeCounter = evt.target.closest(".element").querySelector(".element__counter-like");
-        let counter = Number(_likeCounter.textContent);
-        if (evt.target.classList.contains("element__like-button_active")) {
-            this.api.addLike(_likeCounter.id).then(() => {
-                counter += 1;
-                _likeCounter.textContent = counter;
-            })
-
-        } else {
-            this.api.deleteLike(_likeCounter.id).then(() => {
-                counter -= 1;
-                _likeCounter.textContent = counter;
-            });
-        }
+        const likeCounter = evt.target.closest(".element").querySelector(".element__counter-like");
+        let counter = Number(likeCounter.textContent);
+        this.checkLike(evt, counter, likeCounter);
     }
 
 

@@ -5,10 +5,8 @@ import { Section } from "../components/Section.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
 import { UserInfo } from "../components/UserInfo.js";
-import { PopupWithConfirm } from "../components/PopupWithConfirm.js";
 import { Api } from "../components/Api.js";
 import {
-    initialCards,
     validationSetting,
     containerSelector,
     addElement,
@@ -22,7 +20,8 @@ import {
     formName,
     formdescription,
     userSelectors,
-    options
+    options,
+    deleteCardId,
 } from "../utils/constants.js";
 
 editbutton.addEventListener("click", openFormProfile);
@@ -38,7 +37,7 @@ const cardList = new Section({
         renderer: (item) => {
             console.log(item)
             const card = new Card(
-                item, { userinfo, confirmDeleteCard, api }, {
+                item, { userinfo, confirmDeleteCard, checkLike }, {
                     handleCardClick
                 },
                 ".section-elements"
@@ -51,9 +50,13 @@ const cardList = new Section({
 );
 
 
+const popupConfirm = new PopupWithForm(confirmPopup, {
+    submitForm: (inputs) => {
+        api.deleteCard(inputs.cardId).then(() => document.getElementById(inputs.cardId).closest(".element").remove());
+        popupConfirm.close();
+    }
+});
 
-
-const popupConfirm = new PopupWithConfirm(confirmPopup, { deleteCard });
 
 api.getUser().then(data => {
     userinfo.setUserInfo(data.name, data.about, data.avatar);
@@ -73,13 +76,27 @@ function handleCardClick(name, link) {
 
 
 function confirmDeleteCard(cardId, element) {
-    popupConfirm.open(cardId, element);
-
+    deleteCardId.value = cardId;
+    popupConfirm.open();
 }
 
-function deleteCard(cardId, element) {
-    api.deleteCard(cardId).then(() => element.closest(".element").remove());
+function checkLike(evt, counter, likeCounter) {
+    if (evt.target.classList.contains("element__like-button_active")) {
+        api.addLike(likeCounter.id).then(() => {
+            counter += 1;
+            likeCounter.textContent = counter;
+        })
+
+    } else {
+        api.deleteLike(likeCounter.id).then(() => {
+            counter -= 1;
+            likeCounter.textContent = counter;
+        });
+    }
 }
+
+popupConfirm.setEventListeners();
+
 
 const profileFormValidator = new FormValidator(
     validationSetting,
@@ -100,8 +117,11 @@ avatarFormValidator.enableValidation();
 
 const popUpFormProfile = new PopupWithForm(profilePopup, {
     submitForm: (inputs) => {
+        popUpFormProfile.loading();
         api.editUser(inputs.profilename, inputs.profiledescription).then(data => {
             userinfo.setUserInfo(data.name, data.about, data.avatar);
+            popUpFormProfile.close();
+            popUpFormProfile.loaded();
         })
     },
 });
@@ -115,10 +135,11 @@ function openFormProfile() {
 
 const popUpFormAvatar = new PopupWithForm(avatarPopup, {
     submitForm: (inputs) => {
-        console.log(inputs);
+        popUpFormAvatar.loading();
         api.editAvatar(inputs).then(data => {
-            console.log(data.avatar)
             userinfo.setUserInfo(data.name, data.about, data.avatar);
+            popUpFormAvatar.close();
+            popUpFormAvatar.loaded();
         })
     },
 });
@@ -134,13 +155,16 @@ popUpFormProfile.setEventListeners();
 
 const popUpFormItem = new PopupWithForm(cardPopup, {
     submitForm: (inputs) => {
+        popUpFormItem.loading();
         api.addCard({ name: inputs.placename, link: inputs.placelink }).then(data => {
             const card = new Card(
-                data, { userinfo, confirmDeleteCard, api }, { handleCardClick },
+                data, { userinfo, confirmDeleteCard, checkLike }, { handleCardClick },
                 ".section-elements"
             );
             const cardElement = card.createCard();
             cardList.addPrependItem(cardElement);
+            popUpFormItem.close();
+            popUpFormItem.loaded();
         })
     },
 });
