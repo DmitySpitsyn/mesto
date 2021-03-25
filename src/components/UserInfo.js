@@ -9,8 +9,8 @@ export class UserInfo {
 
     }
     getUserInfo() {
-        const _username = profilename;
-        const _userprofile = profileabout;
+        const _username = this._profiletitle.textContent;
+        const _userprofile = this._profilesubtitle.textContent;
         return [_username, _userprofile];
     }
     setUserInfo(name, profile, avatar) {

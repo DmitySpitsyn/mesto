@@ -1,4 +1,5 @@
 .element__delete-button {
+    display: none;
     top: 18px;
     right: 15px;
     background-image: url(../../../images/element-delete-button.png);

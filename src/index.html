@@ -19,6 +19,7 @@
             <section class="profile">
                 <div class="profile__avatar">
                     <img class="profile__image" alt="Кусто" src="./images/custo.jpg">
+                    <button type="button" class="profile__avatar-button"></button>
                 </div>
                 <h1 class="profile__title">Жак-Ив Кусто</h1>
                 <h2 class="profile__subtitle">Исследователь океана</h2>
@@ -58,6 +59,27 @@
                     </form>
                 </div>
             </section>
+            <section class="popup confirm-popup">
+                <div class="container">
+                    <button type="button" class="container__button-close popup-card-create__button-close"></button>
+                    <h2 class="container__title container__title_type_confirm">Вы уверены?</h2>
+                    <form class="form form-delete-element" novalidate name="form-delete-element">
+                        <input type="text" name="cardId" id="cardId" class="form__input form__input_type_hidden form__input_type_cardId">
+                        <button type="submit" class="form__button-submit form__button-submit_type_confirm">Да</button>
+                    </form>
+                </div>
+            </section>
+            <section class="popup popup-update-avatar">
+                <div class="container">
+                    <button type="button" class="container__button-close popup-profile__button-close"></button>
+                    <h2 class="container__title">Обновить аватар</h2>
+                    <form class="form form-avatar" novalidate name="form-avatar">
+                        <input type="url" name="avatarlink" id="avatar-link" required class="form__input form__input_type_avatar-link" placeholder='Ссылка на аватар'>
+                        <span class="form__input-error avatar-link-error"></span>
+                        <button type="submit" disabled class="form__button-submit form-avatar__button-submit form__button-submit_inactive">Сохранить</button>
+                    </form>
+                </div>
+            </section>
             <section class="template-elements">
                 <ul class="elements"></ul>
                 <template class="section-elements">
@@ -66,7 +88,10 @@
                         <img class="element__image" alt="Фотография места" src="#">
                         <div class="element__title-area">
                             <h2 class="element__title"></h2>
+                            <div class="element__like-area">
                             <button type="button" class="element__like-button"></button>
+                            <span class="element__counter-like">0</span>
+                            </div>
                         </div>
                     </li>
                 </template>
