@@ -14,8 +14,6 @@ export class Api {
         })
     };
 
-
-
     editUser(name, about) {
         return fetch(this._options.baseUrl + '/users/me', {
             method: 'PATCH',
@@ -46,7 +44,6 @@ export class Api {
             return Promise.reject(new Error('Произошла ошибка с кодом ', res.status));
         }).catch(err => Promise.reject(err))
     }
-
 
     getInitialCards() {
         return fetch(this._options.baseUrl + '/cards', {

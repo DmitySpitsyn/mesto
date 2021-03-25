@@ -38,8 +38,6 @@ api.getUser().then(data => {
     userinfo.setUserInfo(data.name, data.about, data.avatar);
     username = data;
 });
-console.log(username)
-    // const username = userinfo.getUserInfo();
 
 const cardList = new Section({
         renderer: (item) => {
