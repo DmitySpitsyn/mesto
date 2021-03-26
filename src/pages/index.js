@@ -34,6 +34,8 @@ const api = new Api(options)
 
 let username = '';
 
+
+
 api.getUser().then(data => {
     userinfo.setUserInfo(data.name, data.about, data.avatar);
     username = data;
@@ -132,6 +134,7 @@ function openFormProfile() {
     const userprofile = userinfo.getUserInfo();
     formName.value = userprofile[0];
     formdescription.value = userprofile[1];
+    profileFormValidator.toggleButtonState();
     popUpFormProfile.open();
 }
 
@@ -149,7 +152,7 @@ const popUpFormAvatar = new PopupWithForm(avatarPopup, {
 popUpFormAvatar.setEventListeners();
 
 function openFormAvatar() {
-
+    avatarFormValidator.toggleButtonState();
     popUpFormAvatar.open();
 }
 
@@ -172,6 +175,7 @@ const popUpFormItem = new PopupWithForm(cardPopup, {
 });
 
 function openFormItem() {
+    addFormValidator.toggleButtonState()
     popUpFormItem.open();
 }
 

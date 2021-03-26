@@ -8,7 +8,10 @@ export class PopupWithForm extends Popup {
         this._submitButton = this._popup.querySelector(".form__button-submit");
 
     }
-
+    open() {
+        super.open();
+        //   this._inputList.forEach(input => input.value = '');
+    }
     close() {
         super.close();
         this._popup.querySelector(".form").reset();
