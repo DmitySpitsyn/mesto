@@ -24,23 +24,6 @@ import {
     deleteCardId,
 } from "../utils/constants.js";
 
-editbutton.addEventListener("click", openFormProfile);
-addElement.addEventListener("click", openFormItem);
-avatarButton.addEventListener("click", openFormAvatar);
-
-const userinfo = new UserInfo(userSelectors);
-
-const api = new Api(options)
-
-let username = '';
-
-
-
-api.getUser().then(data => {
-    userinfo.setUserInfo(data.name, data.about, data.avatar);
-    username = data;
-});
-
 const cardList = new Section({
         renderer: (item) => {
 
@@ -57,18 +40,41 @@ const cardList = new Section({
     containerSelector
 );
 
+const userinfo = new UserInfo(userSelectors);
+
+const api = new Api(options)
+
+let username = '';
+
+Promise.all([
+    api.getUser().then(data => {
+        userinfo.setUserInfo(data.name, data.about, data.avatar);
+        username = data;
+    }), api.getInitialCards().then(data => {
+        cardList.renderItems(data);
+    })
+]).then(() => {
+    editbutton.addEventListener("click", openFormProfile);
+    addElement.addEventListener("click", openFormItem);
+    avatarButton.addEventListener("click", openFormAvatar);
+}).catch(err => Promise.reject(err));
+
+
+
 
 const popupConfirm = new PopupWithForm(confirmPopup, {
     submitForm: (inputs) => {
-        api.deleteCard(inputs.cardId).then(() => document.getElementById(inputs.cardId).closest(".element").remove());
-        popupConfirm.close();
+        popupConfirm.loading('Сохранение...');
+        api.deleteCard(inputs.cardId).then(() => {
+            document.getElementById(inputs.cardId).closest(".element").remove();
+            popupConfirm.close();
+            popupConfirm.loading('Да');
+        }).catch(err => Promise.reject(err))
     }
 });
 
 
-api.getInitialCards().then(data => {
-    cardList.renderItems(data);
-})
+
 
 
 const popupWithImage = new PopupWithImage(previewPopup);
@@ -89,13 +95,13 @@ function checkLike(evt, counter, likeCounter) {
         api.addLike(likeCounter.id).then(() => {
             counter += 1;
             likeCounter.textContent = counter;
-        })
+        }).catch(err => Promise.reject(err));
 
     } else {
         api.deleteLike(likeCounter.id).then(() => {
             counter -= 1;
             likeCounter.textContent = counter;
-        });
+        }).catch(err => Promise.reject(err));
     }
 }
 
@@ -121,12 +127,12 @@ avatarFormValidator.enableValidation();
 
 const popUpFormProfile = new PopupWithForm(profilePopup, {
     submitForm: (inputs) => {
-        popUpFormProfile.loading();
+        popUpFormProfile.loading('Сохранение...');
         api.editUser(inputs.profilename, inputs.profiledescription).then(data => {
             userinfo.setUserInfo(data.name, data.about, data.avatar);
             popUpFormProfile.close();
-            popUpFormProfile.loaded();
-        })
+            popUpFormProfile.loading('Сохраненить');
+        }).catch(err => Promise.reject(err));
     },
 });
 
@@ -140,12 +146,12 @@ function openFormProfile() {
 
 const popUpFormAvatar = new PopupWithForm(avatarPopup, {
     submitForm: (inputs) => {
-        popUpFormAvatar.loading();
+        popUpFormAvatar.loading('Сохранение...');
         api.editAvatar(inputs).then(data => {
             userinfo.setUserInfo(data.name, data.about, data.avatar);
             popUpFormAvatar.close();
-            popUpFormAvatar.loaded();
-        })
+            popUpFormAvatar.loading('Сохраненить');
+        }).catch(err => Promise.reject(err));
     },
 });
 
@@ -160,7 +166,7 @@ popUpFormProfile.setEventListeners();
 
 const popUpFormItem = new PopupWithForm(cardPopup, {
     submitForm: (inputs) => {
-        popUpFormItem.loading();
+        popUpFormItem.loading('Сохранение...');
         api.addCard({ name: inputs.placename, link: inputs.placelink }).then(data => {
             const card = new Card(
                 data, username, { confirmDeleteCard, checkLike }, { handleCardClick },
@@ -169,8 +175,8 @@ const popUpFormItem = new PopupWithForm(cardPopup, {
             const cardElement = card.createCard();
             cardList.addPrependItem(cardElement);
             popUpFormItem.close();
-            popUpFormItem.loaded();
-        })
+            popUpFormItem.loading('Сохраненить');
+        }).catch(err => Promise.reject(err));
     },
 });
 

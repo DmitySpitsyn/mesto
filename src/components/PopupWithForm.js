@@ -24,13 +24,10 @@ export class PopupWithForm extends Popup {
 
     }
 
-    loading() {
-        this._submitButton.innerText = 'Сохранение...'
+    loading(label) {
+        this._submitButton.innerText = label;
     }
 
-    loaded() {
-        this._submitButton.innerText = 'Сохраненить'
-    }
 
     _getInputValues() {
 

@@ -5,12 +5,14 @@ export class Card {
         this._handleCardClick = handleCardClick;
         this._cardSelector = cardSelectror;
         this._likes = data.likes;
-        this._name = data.owner.name;
+        this._id = data.owner._id;
         this._about = data.owner.about;
         this._confirmDeleteCard = confirmDeleteCard;
         this._cardId = data._id;
         this._checkLike = checkLike;
         this._username = username;
+        this._confirmDelete = this._confirmDelete.bind(this);
+        this._switchLikeButton = this._switchLikeButton.bind(this);
 
     }
 
@@ -22,7 +24,7 @@ export class Card {
     }
 
     _deleteButtonStatus() {
-        if (this._username.name === this._name && this._username.about === this._about) {
+        if (this._username._id === this._id) {
             const button = this._element.querySelector(".element__delete-button");
             button.classList.add('element__delete-button_active');
             button.id = this._cardId;
@@ -32,7 +34,7 @@ export class Card {
 
     _likeButtonStatus() {
         this._likes.forEach(item => {
-            if (item.name === this._username.name && item.about === this._username.about) {
+            if (item._id === this._username._id) {
                 this._element.querySelector(".element__like-button").classList.add("element__like-button_active");
             }
         });
@@ -56,10 +58,10 @@ export class Card {
     _setEventListeners() {
         this._element
             .querySelector(".element__delete-button")
-            .addEventListener("click", this._confirmDelete.bind(this));
+            .addEventListener("click", this._confirmDelete);
         this._element
             .querySelector(".element__like-button")
-            .addEventListener("click", this._switchLikeButton.bind(this));
+            .addEventListener("click", this._switchLikeButton);
         this._element
             .querySelector(".element__image")
             .addEventListener("click", () => {
