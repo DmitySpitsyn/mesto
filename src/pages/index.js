@@ -57,7 +57,7 @@ Promise.all([
     editbutton.addEventListener("click", openFormProfile);
     addElement.addEventListener("click", openFormItem);
     avatarButton.addEventListener("click", openFormAvatar);
-}).catch(err => console.log(err));;
+}).catch(err => console.log(err));
 
 
 
@@ -95,13 +95,13 @@ function checkLike(evt, counter, likeCounter) {
         api.addLike(likeCounter.id).then(() => {
             counter += 1;
             likeCounter.textContent = counter;
-        }).catch(err => console.log(err));;
+        }).catch(err => console.log(err));
 
     } else {
         api.deleteLike(likeCounter.id).then(() => {
             counter -= 1;
             likeCounter.textContent = counter;
-        }).catch(err => console.log(err));;
+        }).catch(err => console.log(err));
     }
 }
 
@@ -132,7 +132,7 @@ const popUpFormProfile = new PopupWithForm(profilePopup, {
             userinfo.setUserInfo(data.name, data.about, data.avatar);
             popUpFormProfile.close();
             popUpFormProfile.loading('Сохраненить');
-        }).catch(err => console.log(err));;
+        }).catch(err => console.log(err));
     },
 });
 
@@ -151,7 +151,7 @@ const popUpFormAvatar = new PopupWithForm(avatarPopup, {
             userinfo.setUserInfo(data.name, data.about, data.avatar);
             popUpFormAvatar.close();
             popUpFormAvatar.loading('Сохраненить');
-        }).catch(err => console.log(err));;
+        }).catch(err => console.log(err));
     },
 });
 
@@ -176,7 +176,7 @@ const popUpFormItem = new PopupWithForm(cardPopup, {
             cardList.addPrependItem(cardElement);
             popUpFormItem.close();
             popUpFormItem.loading('Сохраненить');
-        }).catch(err => console.log(err));;
+        }).catch(err => console.log(err));
     },
 });
 
